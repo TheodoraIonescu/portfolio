@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Management</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #fff8fb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Navigation */
+    nav {
+      background: #ffb6c1;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+    nav ul li {
+      margin: 0 20px;
+    }
+    nav ul li a {
+      font-size: 18px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #ff9bb3;
+      transform: translateY(-2px);
+      font-weight: 600;
+    }
+    /* Main Content Layout */
+    .project4 {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .project-text {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .project-text h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #cc3366;
+    }
+    .project-text p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      text-align: justify;
+    }
+    /* Event Section Styles */
+    .event-section {
+      margin-bottom: 60px;
+    }
+    .event-section h2 {
+      font-size: 28px;
+      color: #cc3366;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    /* Photo Gallery Styles */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .photo-item {
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .photo-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .photo-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .photo-item:hover img {
+      transform: scale(1.05);
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .project-text h1 {
+        font-size: 28px;
+      }
+      .project-text p {
+        font-size: 16px;
+      }
+      .event-section h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../documents/cv.pdf">CV</a></li>
+    </ul>
+  </nav>
+
+  <section class="project4">
+    <!-- Introductory Text Section -->
+    <div class="project-text">
+      <h1>Event Production – BUas AGM Staff Events</h1>
+      <p>
+        As part of the Production House project, I worked with a team to organize two major events for BUas AGM staff: a Thanksgiving gathering and a New Year’s drinks event. While I was primarily responsible for the marketing and volunteer coordination, I gained valuable insights into various other aspects of event planning.
+      </p>
+      <p>
+        My main responsibilities included developing and executing marketing strategies to promote the events, ensuring we reached the right audience effectively. I also managed volunteer coordination, ensuring the team was well-prepared and the events ran smoothly. Additionally, I collaborated closely with the team on event concept development, sourcing decorations within budget, and creating floor plans.
+      </p>
+      <p>
+        This project gave me hands-on experience in event marketing, team coordination, and logistics, while providing a broader understanding of what goes into delivering professional, high-quality events.
+      </p>
+    </div>
+
+    <div class="event-section">
+        <h2>Event 1: Thanksgiving Gathering</h2>
+        <div class="photo-gallery">
+            <div class="photo-item">
+                <img src="../images/event_images/image-7.jpg" alt="Thanksgiving event image 1">
+              </div>
+              <div class="photo-item">
+                <img src="../images/event_images/image-8.jpg" alt="Thanksgiving event image 2">
+              </div>
+              <div class="photo-item">
+                <img src="../images/event_images/image-9.jpg" alt="Thanksgiving event image 3">
+              </div>
+              <div class="photo-item">
+                <img src="../images/event_images/image-10.jpg" alt="Thanksgiving event image 4">
+              </div>
+              <div class="photo-item">
+                <img src="../images/event_images/image-11.jpg" alt="Thanksgiving event image 5">
+              </div>
+              <div class="photo-item">
+                <img src="../images/event_images/image-12.jpg" alt="Thanksgiving event image 6">
+              </div>
+        </div>
+      </div>
+
+    <!-- Event 1 Section -->
+    <div class="event-section">
+      <h2>Event 2: New Year’s Drinks</h2>
+      <div class="photo-gallery">
+        <div class="photo-item">
+          <img src="../images/event_images/image-1.jpg" alt="New Year’s event image 1">
+        </div>
+        <div class="photo-item">
+          <img src="../images/event_images/image-2.jpg" alt="New Year’s event image 2">
+        </div>
+        <div class="photo-item">
+          <img src="../images/event_images/image-3.jpg" alt="New Year’s event image 3">
+        </div>
+        <div class="photo-item">
+            <img src="../images/event_images/image-4.jpg" alt="New Year’s event image 4">
+          </div>
+          <div class="photo-item">
+            <img src="../images/event_images/image-5.jpg" alt="New Year’s event image 5">
+          </div>
+          <div class="photo-item">
+            <img src="../images/event_images/image-6.jpg" alt="New Year’s event image 6">
+          </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

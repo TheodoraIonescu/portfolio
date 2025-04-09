@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Media Management – Project Details</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #fff8fb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    nav {
+      background: #ffb6c1;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+    nav ul li {
+      margin: 0 20px;
+    }
+    nav ul li a {
+      font-size: 18px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #ff9bb3;
+      transform: translateY(-2px);
+      font-weight: 600;
+    }
+
+    /* Main Content Layout for the Project */
+    .project-details {
+      display: flex;
+      height: calc(100vh - 60px);
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    /* Text Box for Project Details */
+    .project-text {
+      width: 60%;
+      padding: 20px;
+      overflow-y: auto;
+      box-sizing: border-box;
+      background: #fdfdfd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+    .project-text h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #cc3366;
+    }
+    .project-text p {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    /* Button Styles */
+    .marketing-button {
+      display: block;
+      margin: 0px auto;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #cc3366;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .marketing-button:hover {
+      background-color: #b22a5b;
+      transform: translateY(-2px);
+    }
+
+    /* TikTok Video Container */
+    .tiktok-container {
+      width: 40%;
+      padding: 20px;
+      box-sizing: border-box;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tiktok-container iframe {
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      nav ul li { margin: 0 10px; }
+      .project-text, .tiktok-container {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+      .project-text h1 { font-size: 24px; }
+      .project-details {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../documents/cv.pdf">CV</a></li>
+    </ul>
+  </nav>
+
+  <section class="project-details">
+    <!-- Project Text Box -->
+    <div class="project-text">
+      <h1>Tattoo Design Snowy – Marketing Plan Development</h1>
+    <p>
+    In this project, I worked closely with my team to develop a tailored marketing plan for Tattoo Design Snowy, a new tattoo shop in Breda aiming to increase visibility and attract more customers. The shop's target audience consists of young people and individuals seeking a personal, one-on-one tattoo experience in a more private and welcoming environment.
+    </p>
+    <p>
+    My primary role was to contribute to the creation of the marketing plan and develop a content strategy that resonated with the shop’s brand identity. I helped design a content calendar, ensuring we had consistent and engaging posts for social media platforms. Additionally, we created content, including promotional materials and visuals that aligned with the soft, personal, and homely atmosphere Snowy wanted to convey.
+    </p>
+    <p>
+    I also worked closely with my team to pitch our ideas to the client, collaborating with Snowy to refine the content and promotional tactics. This involved researching effective marketing strategies for small businesses and ensuring the plan was actionable and aligned with the shop’s values and goals.
+    </p>
+    <p>
+    Through this project, I enhanced my skills in client collaboration, content creation, and strategic planning, learning how to execute a marketing campaign that speaks directly to a specific, niche audience.
+    </p>
+      <button class="marketing-button">
+        <a href="../documents/snowy-marketing-plan.pdf" target="_blank">View Marketing Plan</a>
+      </button>
+    </div>
+
+    <!-- TikTok Videos Section -->
+    <div class="tiktok-container">
+      <h2>Featured TikToks</h2>
+      <!-- Embed TikTok Videos -->
+      <iframe src="https://www.tiktok.com/embed/yourvideoid1" width="325" height="580" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+    </div>
+  </section>
+</body>
+</html>

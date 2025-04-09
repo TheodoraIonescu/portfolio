@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Short Documentary Project</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #fff8fb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Navigation */
+    nav {
+      background: #ffb6c1;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+    nav ul li {
+      margin: 0 20px;
+    }
+    nav ul li a {
+      font-size: 18px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #ff9bb3;
+      transform: translateY(-2px);
+      font-weight: 600;
+    }
+    /* Main Content Layout for the Short Film Project */
+    .shortfilm-project {
+      display: flex;
+      height: calc(100vh - 60px);
+      flex-wrap: wrap;
+    }
+    .project-text {
+      width: 40%;
+      padding: 20px;
+      overflow-y: auto;
+      box-sizing: border-box;
+      background: #fdfdfd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+    .project-text h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #cc3366;
+    }
+    .project-text p {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    /* Button Styles */
+    .marketing-button {
+      display: block;
+      margin: 0px auto;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #cc3366;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .marketing-button:hover {
+      background-color: #b22a5b;
+      transform: translateY(-2px);
+    }
+    /* Video Container Styles */
+    .video-container {
+      width: 60%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .video-container video {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      background: #000;
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      nav ul li { margin: 0 10px; }
+      .project-text, .video-container {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+      .project-text h1 { font-size: 24px; }
+      .shortfilm-project {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../documents/cv.pdf">CV</a></li>
+    </ul>
+  </nav>
+
+  <section class="shortfilm-project">
+    <div class="project-text">
+      <h1>Home Advantage – Documentary Development & Marketing</h1>
+      <p>
+        As part of a documentary development project, our team created Home Advantage, a short documentary concept centered on the inspiring story of a disadvantaged girl playing in a field hockey club. The film aimed to highlight the resilience and joy of disabled athletes, challenging perceptions and showcasing that happiness and passion are not limited by physical difficulties.
+    </p>
+      <p>
+        My primary role in this project was developing a comprehensive marketing plan tailored to our documentary’s goals and budget. Using the SOSTAC method and relevant marketing theories, I devised strategic promotion ideas to maximize outreach and engagement. This process deepened my understanding of documentary marketing, refining my skills in audience targeting, promotional strategy, and budget allocation.
+    </p>
+      <p>
+        This project reinforced my passion for marketing and provided valuable insights into crafting an impactful promotional campaign for a socially driven film.      </p>
+      <button class="marketing-button" ><a href="../documents/ha-marketing-plan.pdf">View Marketing Plan</a></button>
+    </div>
+    <div class="video-container">
+      <!-- HTML5 video element with controls and optional poster image -->
+      <video controls poster="../images/home_advantage.jpg">
+        <source src="../documents/home_advantage.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+</body>
+</html>

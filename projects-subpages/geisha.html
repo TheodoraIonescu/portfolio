@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Social Media Management – Restaurant</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: url('../images/geisha.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    nav {
+      background: #ffb6c1;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+    nav ul li {
+      margin: 0 20px;
+    }
+    nav ul li a {
+      font-size: 18px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #ff9bb3;
+      transform: translateY(-2px);
+      font-weight: 600;
+    }
+    .project-page {
+      display: flex;
+      flex-wrap: wrap;
+      height: auto;
+      padding: 40px;
+      backdrop-filter: blur(5px); /* Adds a subtle blur effect to the background */
+    }
+    .left-box {
+      width: 80%;
+      padding: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.8); /* White background with opacity */
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex; /* Flexbox for layout */
+      flex-direction: row; /* Items side by side */
+    }
+
+    .left-text-box {
+      width: 70%; /* Takes 70% of the parent's width */
+      padding-right: 20px; /* Add space between text and social links */
+    }
+
+    .left-box h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #cc3366;
+    }
+
+    .left-box p {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    .links-box {
+      display: flex;
+      flex-direction: column; /* Align items vertically */
+      align-items: center;
+      justify-content: center; /* Center items vertically */
+      margin-top: 0px;
+      width: 30%
+    }
+    .links-box h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #cc3366;
+    }
+    .social-links {
+      width: 30%; /* Takes 30% of the parent's width */
+      display: flex;
+      flex-direction: row; /* Align items vertically */
+      align-items: center;
+      justify-content: flex-start; /* Align items to the left */
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-bottom: 15px; /* Space between icons */
+      transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      padding: 10px;
+      padding-left: 0px;
+    }
+  .right-box {
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.8); /* White background with opacity */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto; /* Aligns the container to the right */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    flex-direction: row-reverse; /* Ensure person is on the right, icons on the left */
+  }
+  .right-box h1 {
+    font-size: 28px;
+    margin-bottom: 0px;
+    color: #cc3366;
+  }
+  .right-box p {
+    margin-bottom: 16px;
+    text-align: justify;
+    align-items: flex-end;
+  }
+  .right-text-box {
+    width: 90%; /* Takes 70% of the parent's width */
+    padding-right: 50px; /* Add space between text and social links */
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+  .video-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .project-text, .video-container {
+      width: 100%;
+    }
+    .project-text h1 {
+      font-size: 24px;
+    }
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../documents/cv.pdf">CV</a></li>
+    </ul>
+  </nav>
+
+  <section class="project-page">
+    <div class="left-box">
+      <!-- Text part -->
+      <div class="left-text-box">
+        <h1>Social Media Manager – Geisha Lounge Breda </h1>
+        <p>
+          At Geisha Lounge Breda, I am responsible for managing and creating content for the restaurant’s TikTok and Instagram accounts, as well as producing podcasts alongside my boss, Jun. I took on this role from the ground up, and since I began posting consistently, there has been a noticeable increase in engagement, followers, and overall brand presence across both platforms.
+        </p>
+      </div>
+      <!-- Social links part -->
+      <div class="links-box">
+        <h3>Follow us Here:</h3>
+        <div class="social-links">
+          <a href="https://www.tiktok.com/@geisha_lounge" target="_blank">
+            <img src="../images/icons/tiktok.webp" alt="TikTok" class="social-icon">
+          </a>
+          <a href="https://www.instagram.com/geishalounge" target="_blank">
+            <img src="../images/icons/insta.webp" alt="Instagram" class="social-icon">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!--Right Box-->
+    <div class="right-box">
+      <div class="right-text-box">
+        <h1>Content Creation</h1>
+        <p>
+          For TikTok and Instagram, I craft engaging, eye-catching content that aligns with the vibrant, fun, and dynamic atmosphere of the restaurant. I focus on creating videos that highlight our food, drinks, events, and unique experiences in a way that appeals to our target audience—mainly Dutch Gen Z and Millennials. Through regular posting, I have been able to grow our follower base significantly, with posts designed to be visually appealing and shareable. I also focus on responding to comments and engaging with the community, helping to foster a strong online presence and connection with our audience.
+        </p>
+        <p>
+          In addition to content creation, I also oversee the strategic direction of both social media channels. This includes planning and scheduling content, analyzing performance metrics, and adapting strategies to ensure maximum reach and engagement. By utilizing trends and engaging with viral content, I’ve managed to boost both our follower numbers and engagement rates.
+        </p>  
+      </div>
+    </div>
+
+    <!--Left Box-->
+    <div class="left-box">
+      <div class="left-text-box">
+        <h1>Podcast Production</h1>
+        <p>
+          Alongside my social media work, I collaborate closely with Jun to produce podcasts that are both informative and entertaining. The podcasts focus on a variety of topics, with Jun guiding the discussions. My role includes editing the podcasts, ensuring they are concise and ready for release as audio and video shorts, and then uploading them to our platforms. The podcasts serve to deepen our connection with customers and further position Geisha Lounge as a unique, welcoming brand.
+        </p>
+      </div>
+      <div class="links-box">
+        <h3>Listen to our Podcast:</h3>
+        <div class="social-links">
+          <a href="https://www.spotify.com/yourpodcast" target="_blank">
+            <img src="../images/icons/spotify.webp" alt="Spotify" class="social-icon">
+          </a>
+          <a href="https://www.apple.com/apple-podcast/yourpodcast" target="_blank">
+            <img src="../images/icons/apple.webp" alt="Apple Podcast" class="social-icon">
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+      <!--Right Box-->
+      <div class="right-box">
+        <div class="right-text-box">
+          <h1>Growth</h1>
+          <p>
+            Since I began taking ownership of both TikTok and Instagram, the accounts have grown in terms of reach, engagement, and brand recognition, aligning perfectly with Geisha Lounge’s vibrant image. The consistency and strategic content creation have not only expanded our online presence but have also directly contributed to increased foot traffic and customer engagement.
+          </p> 
+        </div>
+      </div>
+
+    <div class="video-container">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@geisha_lounge/video/7481779403677125910" data-video-id="7481779403677125910" style="max-width: 325px;min-width: 325px;" > <section> <a target="_blank" title="@geisha_lounge" href="https://www.tiktok.com/@geisha_lounge?refer=embed">@geisha_lounge</a> My hobby in one video🥢✨ <a title="sushilover" target="_blank" href="https://www.tiktok.com/tag/sushilover?refer=embed">#sushilover</a> <a title="sushinederland" target="_blank" href="https://www.tiktok.com/tag/sushinederland?refer=embed">#sushinederland</a> <a title="sushinetherlands" target="_blank" href="https://www.tiktok.com/tag/sushinetherlands?refer=embed">#sushinetherlands</a> <a title="sushibae" target="_blank" href="https://www.tiktok.com/tag/sushibae?refer=embed">#sushibae</a> <a title="sushidate" target="_blank" href="https://www.tiktok.com/tag/sushidate?refer=embed">#sushidate</a> <a title="sushidatenight" target="_blank" href="https://www.tiktok.com/tag/sushidatenight?refer=embed">#sushidatenight</a> <a title="sushibreda" target="_blank" href="https://www.tiktok.com/tag/sushibreda?refer=embed">#sushibreda</a> <a title="bredafood" target="_blank" href="https://www.tiktok.com/tag/bredafood?refer=embed">#bredafood</a> <a title="bredafoodguide" target="_blank" href="https://www.tiktok.com/tag/bredafoodguide?refer=embed">#bredafoodguide</a> <a title="bredafoodspots" target="_blank" href="https://www.tiktok.com/tag/bredafoodspots?refer=embed">#bredafoodspots</a> <a title="foodspot" target="_blank" href="https://www.tiktok.com/tag/foodspot?refer=embed">#foodspot</a> <a title="foodspots" target="_blank" href="https://www.tiktok.com/tag/foodspots?refer=embed">#foodspots</a> <a title="sushimonsters" target="_blank" href="https://www.tiktok.com/tag/sushimonsters?refer=embed">#sushimonsters</a> <a title="netherlands🇳🇱" target="_blank" href="https://www.tiktok.com/tag/netherlands%F0%9F%87%B3%F0%9F%87%B1?refer=embed">#netherlands🇳🇱</a> <a title="netherlandsfood" target="_blank" href="https://www.tiktok.com/tag/netherlandsfood?refer=embed">#netherlandsfood</a> <a title="bredacentrum" target="_blank" href="https://www.tiktok.com/tag/bredacentrum?refer=embed">#bredacentrum</a> <a title="bredacity" target="_blank" href="https://www.tiktok.com/tag/bredacity?refer=embed">#bredacity</a> <a title="chinesefood" target="_blank" href="https://www.tiktok.com/tag/chinesefood?refer=embed">#chinesefood</a> <a title="ramenbreda" target="_blank" href="https://www.tiktok.com/tag/ramenbreda?refer=embed">#ramenbreda</a> <a title="chinesefoodmukbang" target="_blank" href="https://www.tiktok.com/tag/chinesefoodmukbang?refer=embed">#chinesefoodmukbang</a> <a title="dc" target="_blank" href="https://www.tiktok.com/tag/dc?refer=embed">#dc</a> <a title="viral" target="_blank" href="https://www.tiktok.com/tag/viral?refer=embed">#viral</a> <a title="fy" target="_blank" href="https://www.tiktok.com/tag/fy?refer=embed">#fy</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="foryoupage❤️❤️" target="_blank" href="https://www.tiktok.com/tag/foryoupage%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F?refer=embed">#foryoupage❤️❤️</a> <a title="viral_video" target="_blank" href="https://www.tiktok.com/tag/viral_video?refer=embed">#viral_video</a> <a target="_blank" title="♬ original sound - 🩷" href="https://www.tiktok.com/music/original-sound-7417368060790606609?refer=embed">♬ original sound - 🩷</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@geisha_lounge/video/7480293173101595926" data-video-id="7480293173101595926" style="max-width: 325px;min-width: 325px;" > <section> <a target="_blank" title="@geisha_lounge" href="https://www.tiktok.com/@geisha_lounge?refer=embed">@geisha_lounge</a> Yes please✨ <a title="sushilover" target="_blank" href="https://www.tiktok.com/tag/sushilover?refer=embed">#sushilover</a> <a title="sushinederland" target="_blank" href="https://www.tiktok.com/tag/sushinederland?refer=embed">#sushinederland</a> <a title="sushinetherlands" target="_blank" href="https://www.tiktok.com/tag/sushinetherlands?refer=embed">#sushinetherlands</a> <a title="sushibae" target="_blank" href="https://www.tiktok.com/tag/sushibae?refer=embed">#sushibae</a> <a title="sushidate" target="_blank" href="https://www.tiktok.com/tag/sushidate?refer=embed">#sushidate</a> <a title="sushidatenight" target="_blank" href="https://www.tiktok.com/tag/sushidatenight?refer=embed">#sushidatenight</a> <a title="sushibreda" target="_blank" href="https://www.tiktok.com/tag/sushibreda?refer=embed">#sushibreda</a> <a title="bredafood" target="_blank" href="https://www.tiktok.com/tag/bredafood?refer=embed">#bredafood</a> <a title="bredafoodguide" target="_blank" href="https://www.tiktok.com/tag/bredafoodguide?refer=embed">#bredafoodguide</a> <a title="bredafoodspots" target="_blank" href="https://www.tiktok.com/tag/bredafoodspots?refer=embed">#bredafoodspots</a> <a title="foodspot" target="_blank" href="https://www.tiktok.com/tag/foodspot?refer=embed">#foodspot</a> <a title="foodspots" target="_blank" href="https://www.tiktok.com/tag/foodspots?refer=embed">#foodspots</a> <a title="sushimonsters" target="_blank" href="https://www.tiktok.com/tag/sushimonsters?refer=embed">#sushimonsters</a> <a title="netherlands🇳🇱" target="_blank" href="https://www.tiktok.com/tag/netherlands%F0%9F%87%B3%F0%9F%87%B1?refer=embed">#netherlands🇳🇱</a> <a title="netherlandsfood" target="_blank" href="https://www.tiktok.com/tag/netherlandsfood?refer=embed">#netherlandsfood</a> <a title="bredacentrum" target="_blank" href="https://www.tiktok.com/tag/bredacentrum?refer=embed">#bredacentrum</a> <a title="bredacity" target="_blank" href="https://www.tiktok.com/tag/bredacity?refer=embed">#bredacity</a> <a title="chinesefood" target="_blank" href="https://www.tiktok.com/tag/chinesefood?refer=embed">#chinesefood</a> <a title="ramenbreda" target="_blank" href="https://www.tiktok.com/tag/ramenbreda?refer=embed">#ramenbreda</a> <a title="chinesefoodmukbang" target="_blank" href="https://www.tiktok.com/tag/chinesefoodmukbang?refer=embed">#chinesefoodmukbang</a> <a title="foryouu" target="_blank" href="https://www.tiktok.com/tag/foryouu?refer=embed">#foryouu</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="foryoupage❤️❤️" target="_blank" href="https://www.tiktok.com/tag/foryoupage%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F?refer=embed">#foryoupage❤️❤️</a> <a title="foryoupagе" target="_blank" href="https://www.tiktok.com/tag/foryoupag%D0%B5?refer=embed">#foryoupagе</a> <a title="viral_video" target="_blank" href="https://www.tiktok.com/tag/viral_video?refer=embed">#viral_video</a> <a title="dateideas" target="_blank" href="https://www.tiktok.com/tag/dateideas?refer=embed">#dateideas</a> <a title="datenight" target="_blank" href="https://www.tiktok.com/tag/datenight?refer=embed">#datenight</a> <a target="_blank" title="♬ original sound - 𐙚 ⁵⁵" href="https://www.tiktok.com/music/original-sound-7322179123712789280?refer=embed">♬ original sound - 𐙚 ⁵⁵</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@geisha_lounge/video/7482886643246976278" data-video-id="7482886643246976278" style="max-width: 325px;min-width: 325px;" > <section> <a target="_blank" title="@geisha_lounge" href="https://www.tiktok.com/@geisha_lounge?refer=embed">@geisha_lounge</a> This is your sign🥢 <a title="sushilover" target="_blank" href="https://www.tiktok.com/tag/sushilover?refer=embed">#sushilover</a> <a title="sushinederland" target="_blank" href="https://www.tiktok.com/tag/sushinederland?refer=embed">#sushinederland</a> <a title="sushinetherlands" target="_blank" href="https://www.tiktok.com/tag/sushinetherlands?refer=embed">#sushinetherlands</a> <a title="sushibae" target="_blank" href="https://www.tiktok.com/tag/sushibae?refer=embed">#sushibae</a> <a title="sushidate" target="_blank" href="https://www.tiktok.com/tag/sushidate?refer=embed">#sushidate</a> <a title="sushidatenight" target="_blank" href="https://www.tiktok.com/tag/sushidatenight?refer=embed">#sushidatenight</a> <a title="sushibreda" target="_blank" href="https://www.tiktok.com/tag/sushibreda?refer=embed">#sushibreda</a> <a title="bredafood" target="_blank" href="https://www.tiktok.com/tag/bredafood?refer=embed">#bredafood</a> <a title="bredafoodguide" target="_blank" href="https://www.tiktok.com/tag/bredafoodguide?refer=embed">#bredafoodguide</a> <a title="bredafoodspots" target="_blank" href="https://www.tiktok.com/tag/bredafoodspots?refer=embed">#bredafoodspots</a> <a title="foodspot" target="_blank" href="https://www.tiktok.com/tag/foodspot?refer=embed">#foodspot</a> <a title="foodspots" target="_blank" href="https://www.tiktok.com/tag/foodspots?refer=embed">#foodspots</a> <a title="sushimonsters" target="_blank" href="https://www.tiktok.com/tag/sushimonsters?refer=embed">#sushimonsters</a> <a title="netherlands🇳🇱" target="_blank" href="https://www.tiktok.com/tag/netherlands%F0%9F%87%B3%F0%9F%87%B1?refer=embed">#netherlands🇳🇱</a> <a title="netherlandsfood" target="_blank" href="https://www.tiktok.com/tag/netherlandsfood?refer=embed">#netherlandsfood</a> <a title="bredacentrum" target="_blank" href="https://www.tiktok.com/tag/bredacentrum?refer=embed">#bredacentrum</a> <a title="bredacity" target="_blank" href="https://www.tiktok.com/tag/bredacity?refer=embed">#bredacity</a> <a title="chinesefood" target="_blank" href="https://www.tiktok.com/tag/chinesefood?refer=embed">#chinesefood</a> <a title="ramenbreda" target="_blank" href="https://www.tiktok.com/tag/ramenbreda?refer=embed">#ramenbreda</a> <a title="chinesefoodmukbang" target="_blank" href="https://www.tiktok.com/tag/chinesefoodmukbang?refer=embed">#chinesefoodmukbang</a> <a title="fy" target="_blank" href="https://www.tiktok.com/tag/fy?refer=embed">#fy</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="foryoupage❤️❤️" target="_blank" href="https://www.tiktok.com/tag/foryoupage%E2%9D%A4%EF%B8%8F%E2%9D%A4%EF%B8%8F?refer=embed">#foryoupage❤️❤️</a> <a title="dc" target="_blank" href="https://www.tiktok.com/tag/dc?refer=embed">#dc</a> <a title="viral" target="_blank" href="https://www.tiktok.com/tag/viral?refer=embed">#viral</a> <a title="viral_video" target="_blank" href="https://www.tiktok.com/tag/viral_video?refer=embed">#viral_video</a> <a title="dateideas" target="_blank" href="https://www.tiktok.com/tag/dateideas?refer=embed">#dateideas</a> <a title="sushilover" target="_blank" href="https://www.tiktok.com/tag/sushilover?refer=embed">#sushilover</a> <a title="goviral" target="_blank" href="https://www.tiktok.com/tag/goviral?refer=embed">#goviral</a> <a target="_blank" title="♬ MoBlack Yamore Mashup x Adam Port Move by MIRRACLE - MIRRACLE" href="https://www.tiktok.com/music/MoBlack-Yamore-Mashup-x-Adam-Port-Move-by-MIRRACLE-7403456152661330720?refer=embed">♬ MoBlack Yamore Mashup x Adam Port Move by MIRRACLE - MIRRACLE</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+    </div>
+  </section>
+</body>
+</html>

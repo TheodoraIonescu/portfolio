@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vintigue Magazine</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #fff8fb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Navigation */
+    nav {
+      background: #ffb6c1;
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+    nav ul li {
+      margin: 0 20px;
+    }
+    nav ul li a {
+      font-size: 18px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #ff9bb3;
+      transform: translateY(-2px);
+      font-weight: 600;
+    }
+    /* Main Content Layout */
+    .vintigue-project {
+      display: flex;
+      height: calc(100vh - 60px);
+    }
+    .project-text {
+      width: 40%;
+      padding: 20px;
+      overflow-y: auto;
+      box-sizing: border-box;
+      background: #fdfdfd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+    .project-text h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #cc3366;
+    }
+    .project-text p {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    /* PDF Container Styles */
+    .pdf-container {
+      width: 60%;
+      position: relative;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* Two canvases for left and right pages */
+    .pdf-canvas {
+      border: 1px solid #ccc;
+      max-height: 100%;
+      /* By default canvases are hidden; we’ll show/hide based on spread */
+      display: none;
+    }
+    /* When showing a single page, center it appropriately */
+    .align-left {
+      margin-right: auto;
+    }
+    .align-right {
+      margin-left: auto;
+    }
+    /* Arrow Buttons */
+    .pdf-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 182, 193, 0.8);
+      border: none;
+      font-size: 26px;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      color: #333;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s ease, transform 0.3s ease;
+      z-index: 10;
+    }
+    .pdf-arrow:hover {
+      background: rgba(255, 182, 193, 1);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .pdf-arrow.prev {
+      left: 15px;
+    }
+    .pdf-arrow.next {
+      right: 15px;
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      nav ul li { margin: 0 10px; }
+      .project-text h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../documents/cv.pdf">CV</a></li>
+    </ul>
+  </nav>
+
+  <section class="vintigue-project">
+    <div class="project-text">
+      <h1>Vintigue – A Vintage Fashion & Sustainability Magazine</h1>
+      <p>
+        As part of the Production House project, I collaborated in a multidisciplinary team to create Vintigue, a magazine that explores the intersection of vintage fashion and sustainability. Throughout the 15-week process, we developed the concept, conducted research, and produced original content, ensuring a cohesive and high-quality final product.
+      </p>
+      <p>
+        My contributions included writing and editing engaging stories, including a fantasy narrative and two interview-based features—one with a photographer who uses vintage cameras to achieve unique aesthetics and another with a designer repurposing materials such as McDonald's bags into fashion accessories. Additionally, I worked with Adobe Photoshop to design visual elements.
+      </p>
+      <p>
+        Bringing Vintigue to life was a dynamic challenge—blending storytelling, design, and sustainability into one compelling publication. Seeing it all come together, from concept to final pages, was a rewarding experience that strengthened both my creative and technical skills.
+      </p>
+    </div>
+    <div class="pdf-container">
+      <!-- Two canvases for left and right pages -->
+      <canvas id="pdf-canvas-left" class="pdf-canvas"></canvas>
+      <canvas id="pdf-canvas-right" class="pdf-canvas"></canvas>
+      <button id="prev-page" class="pdf-arrow prev">&#9664;</button>
+      <button id="next-page" class="pdf-arrow next">&#9654;</button>
+    </div>
+  </section>
+
+  <!-- Include jQuery and PDF.js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script>
+    // Set PDF.js worker source
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+
+    const pdfUrl = '../documents/vintigue_split.pdf'; // Adjust if needed
+    let pdfDoc = null,
+        currentSpread = 0,  // 0-based index for spreads
+        totalSpreads = 0,
+        canvasLeft = document.getElementById('pdf-canvas-left'),
+        canvasRight = document.getElementById('pdf-canvas-right'),
+        ctxLeft = canvasLeft.getContext('2d'),
+        ctxRight = canvasRight.getContext('2d');
+
+    // Render a single page into a given canvas. Scale dynamically to fit container width.
+    function renderPage(pageNumber, canvas, ctx) {
+    return pdfDoc.getPage(pageNumber).then(function (page) {
+      const containerWidth = document.querySelector('.pdf-container').clientWidth / 2;
+      const unscaledViewport = page.getViewport({ scale: 1 });
+
+      // Increase scale for better quality (adjust according to screen DPI)
+      const scale = window.devicePixelRatio * (containerWidth / unscaledViewport.width);
+      const viewport = page.getViewport({ scale: scale });
+
+      // Set higher resolution canvas
+      const outputScale = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(viewport.width * outputScale);
+      canvas.height = Math.floor(viewport.height * outputScale);
+      canvas.style.width = `${viewport.width}px`;
+      canvas.style.height = `${viewport.height}px`;
+
+      // Scale context for high DPI screens
+      ctx.scale(outputScale, outputScale);
+
+      return page.render({
+        canvasContext: ctx,
+        viewport: viewport,
+      }).promise;
+    });
+  }
+
+    // Render a spread based on currentSpread value.
+    function renderSpread() {
+      // Clear both canvases
+      ctxLeft.clearRect(0, 0, canvasLeft.width, canvasLeft.height);
+      ctxRight.clearRect(0, 0, canvasRight.width, canvasRight.height);
+      
+      // Hide both canvases initially.
+      canvasLeft.style.display = 'none';
+      canvasRight.style.display = 'none';
+      
+      // Determine total pages and spread mapping:
+      // Spread 0: first page (display right only, aligned right)
+      // Last spread: last page (display left only, aligned left)
+      // Otherwise, intermediate spreads display two pages:
+      //   left = 2 + 2*(currentSpread-1), right = left + 1.
+      const n = pdfDoc.numPages;
+      if (currentSpread === 0) {
+        // First spread: show page 1 on right.
+        renderPage(1, canvasRight, ctxRight).then(() => {
+          canvasRight.style.display = 'block';
+          canvasRight.classList.add('align-right');
+          canvasLeft.classList.remove('align-left');
+        });
+      } else if (currentSpread === totalSpreads - 1) {
+        // Last spread: show last page on left.
+        renderPage(n, canvasLeft, ctxLeft).then(() => {
+          canvasLeft.style.display = 'block';
+          canvasLeft.classList.add('align-left');
+          canvasRight.classList.remove('align-right');
+        });
+      } else {
+        // Intermediate spread: display two pages.
+        let i = currentSpread - 1; // intermediate spread index
+        let leftPage = 2 + 2 * i;
+        let rightPage = leftPage + 1;
+        Promise.all([
+          renderPage(leftPage, canvasLeft, ctxLeft),
+          renderPage(rightPage, canvasRight, ctxRight)
+        ]).then(() => {
+          canvasLeft.style.display = 'block';
+          canvasRight.style.display = 'block';
+          // Remove any alignment classes if present.
+          canvasLeft.classList.remove('align-left');
+          canvasRight.classList.remove('align-right');
+        });
+      }
+    }
+
+    // Navigation handlers.
+    function onPrevPage() {
+      if (currentSpread <= 0) return;
+      currentSpread--;
+      renderSpread();
+    }
+
+    function onNextPage() {
+      if (currentSpread >= totalSpreads - 1) return;
+      currentSpread++;
+      renderSpread();
+    }
+
+    pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    totalSpreads = Math.ceil(pdfDoc.numPages / 2) + 1;
+    renderSpread();
+  }).catch(function (error) {
+    console.error("Error loading PDF: ", error);
+  });
+
+    document.getElementById('prev-page').addEventListener('click', onPrevPage);
+    document.getElementById('next-page').addEventListener('click', onNextPage);
+  </script>
+</body>
+</html>

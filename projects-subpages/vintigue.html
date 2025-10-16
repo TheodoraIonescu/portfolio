@@ -1,284 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vintigue Magazine</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #fff8fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Navigation */
-    nav {
-      background: #ffb6c1;
-      padding: 15px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: inline-flex;
-    }
-    nav ul li {
-      margin: 0 20px;
-    }
-    nav ul li a {
-      font-size: 18px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background: #ff9bb3;
-      transform: translateY(-2px);
-      font-weight: 600;
-    }
-    /* Main Content Layout */
-    .vintigue-project {
-      display: flex;
-      height: calc(100vh - 60px);
-    }
-    .project-text {
-      width: 40%;
-      padding: 20px;
-      overflow-y: auto;
-      box-sizing: border-box;
-      background: #fdfdfd;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-    }
-    .project-text h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #cc3366;
-    }
-    .project-text p {
-      margin-bottom: 16px;
-      text-align: justify;
-    }
-    /* PDF Container Styles */
-    .pdf-container {
-      width: 60%;
-      position: relative;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    /* Two canvases for left and right pages */
-    .pdf-canvas {
-      border: 1px solid #ccc;
-      max-height: 100%;
-      /* By default canvases are hidden; we’ll show/hide based on spread */
-      display: none;
-    }
-    /* When showing a single page, center it appropriately */
-    .align-left {
-      margin-right: auto;
-    }
-    .align-right {
-      margin-left: auto;
-    }
-    /* Arrow Buttons */
-    .pdf-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 182, 193, 0.8);
-      border: none;
-      font-size: 26px;
-      width: 45px;
-      height: 45px;
-      line-height: 45px;
-      text-align: center;
-      color: #333;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background 0.3s ease, transform 0.3s ease;
-      z-index: 10;
-    }
-    .pdf-arrow:hover {
-      background: rgba(255, 182, 193, 1);
-      transform: translateY(-50%) scale(1.1);
-    }
-    .pdf-arrow.prev {
-      left: 15px;
-    }
-    .pdf-arrow.next {
-      right: 15px;
-    }
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      nav ul li { margin: 0 10px; }
-      .project-text h1 { font-size: 24px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintigue Magazine | Theodora's Portfolio</title>
+    <link href="../styles.css" rel="stylesheet">
+    <link href="../css/pdf-viewer.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Material+Icons" rel="stylesheet" />
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../projects.html" class="active">Projects</a></li>
-      <li><a href="../documents/cv.pdf">CV</a></li>
-    </ul>
-  </nav>
 
-  <section class="vintigue-project">
-    <div class="project-text">
-      <h1>Vintigue – A Vintage Fashion & Sustainability Magazine</h1>
-      <p>
-        As part of the Production House project, I collaborated in a multidisciplinary team to create Vintigue, a magazine that explores the intersection of vintage fashion and sustainability. Throughout the 15-week process, we developed the concept, conducted research, and produced original content, ensuring a cohesive and high-quality final product.
-      </p>
-      <p>
-        My contributions included writing and editing engaging stories, including a fantasy narrative and two interview-based features—one with a photographer who uses vintage cameras to achieve unique aesthetics and another with a designer repurposing materials such as McDonald's bags into fashion accessories. Additionally, I worked with Adobe Photoshop to design visual elements.
-      </p>
-      <p>
-        Bringing Vintigue to life was a dynamic challenge—blending storytelling, design, and sustainability into one compelling publication. Seeing it all come together, from concept to final pages, was a rewarding experience that strengthened both my creative and technical skills.
-      </p>
-    </div>
-    <div class="pdf-container">
-      <!-- Two canvases for left and right pages -->
-      <canvas id="pdf-canvas-left" class="pdf-canvas"></canvas>
-      <canvas id="pdf-canvas-right" class="pdf-canvas"></canvas>
-      <button id="prev-page" class="pdf-arrow prev">&#9664;</button>
-      <button id="next-page" class="pdf-arrow next">&#9654;</button>
-    </div>
-  </section>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom p-0">
+        <div class="container-fluid py-2 px-3">
+            <a class="navbar-brand text-dark-emphasis fw-bold fs-5" href="index.html">Theodora</a>
+            
+            <button class="navbar-toggler border-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons">menu</i>
+            </button>
 
-  <!-- Include jQuery and PDF.js -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-  <script>
-    // Set PDF.js worker source
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#home"><i class="material-icons fs-5">home</i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#skills"><i class="material-icons fs-5">star</i> Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#projects"><i class="material-icons fs-5">folder</i> Projects</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    const pdfUrl = '../documents/vintigue_split.pdf'; // Adjust if needed
-    let pdfDoc = null,
-        currentSpread = 0,  // 0-based index for spreads
-        totalSpreads = 0,
-        canvasLeft = document.getElementById('pdf-canvas-left'),
-        canvasRight = document.getElementById('pdf-canvas-right'),
-        ctxLeft = canvasLeft.getContext('2d'),
-        ctxRight = canvasRight.getContext('2d');
+    <main>
+        
+        <header class="bg-white py-5 py-lg-7">
+            <div class="container">
+                <h1 class="display-4 fw-bold text-dark-emphasis mb-3 text-center text-lg-start">
+                    Vintigue – A Vintage Fashion & Sustainability Magazine
+                </h1>
+                
+                <div class="row g-5 align-items-start">
+                    <div class="col-lg-8">
+                        <p class="lead text-gray-600 mb-4">
+                            <strong>Brief Overview:</strong> A multidisciplinary magazine project exploring the intersection of vintage fashion and sustainability. Developed over 15 weeks as part of a university Production House collaboration, the project aimed to merge storytelling, aesthetics, and eco-conscious design into one cohesive publication.
+                        </p>
+                        <div class="hero-image-wrap mb-4" style="max-width: 600px;">
+                            <img src="../images/thumbnails/vintigue-thumbnail.jpg" alt="Vintigue Magazine Cover" class="hero-image img-fluid rounded shadow-sm"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="p-4 bg-light rounded-3 shadow-sm sticky-top" style="top: 8rem;">
+                            <h5 class="fw-bold text-dark-emphasis mb-3">Project Details</h5>
+                            <ul class="list-unstyled mb-0 d-grid gap-3">
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">My Role:</p>
+                                    <p class="mb-0 text-gray-600">Writer, Editor, Visual Designer</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Tools & Skills:</p>
+                                    <p class="mb-0 text-gray-600">Adobe Photoshop, Creative Writing, Interviewing, Editorial Design</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Timeline:</p>
+                                    <p class="mb-0 text-gray-600">15 Weeks</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Client/Context:</p>
+                                    <p class="mb-0 text-gray-600">University Production House Project</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    // Render a single page into a given canvas. Scale dynamically to fit container width.
-    function renderPage(pageNumber, canvas, ctx) {
-    return pdfDoc.getPage(pageNumber).then(function (page) {
-      const containerWidth = document.querySelector('.pdf-container').clientWidth / 2;
-      const unscaledViewport = page.getViewport({ scale: 1 });
+        <section id="contributions" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">My Contributions</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Feature Writing & Interviews</h5>
+                        <p class="text-gray-600">
+                            I researched and wrote several key stories, including a fantasy narrative and two feature interviews—one with a photographer using vintage cameras to create unique aesthetics, and another with a designer transforming materials like McDonald’s bags into fashion pieces.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Editorial Design & Visual Integration</h5>
+                        <p class="text-gray-600">
+                            Using Adobe Photoshop, I contributed to the layout and visual consistency of the magazine, aligning typography and imagery to reinforce the project’s theme of sustainability and retro aesthetics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="container my-5">
 
-      // Increase scale for better quality (adjust according to screen DPI)
-      const scale = window.devicePixelRatio * (containerWidth / unscaledViewport.width);
-      const viewport = page.getViewport({ scale: scale });
+        <section id="deliverable" class="py-5 py-lg-8">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis text-center">The Final Deliverable</h2>
+                <p class="lead text-gray-600 mb-5 mx-auto text-center" style="max-width: 700px;">
+                    Below is the interactive PDF viewer displaying the full Vintigue magazine. Use the navigation arrows to flip through the digital pages.
+                </p>
 
-      // Set higher resolution canvas
-      const outputScale = window.devicePixelRatio || 1;
-      canvas.width = Math.floor(viewport.width * outputScale);
-      canvas.height = Math.floor(viewport.height * outputScale);
-      canvas.style.width = `${viewport.width}px`;
-      canvas.style.height = `${viewport.height}px`;
+                <div class="pdf-container mx-auto shadow-lg rounded-3 bg-light">
+                    <canvas id="pdf-canvas-left" class="pdf-canvas"></canvas>
+                    <canvas id="pdf-canvas-right" class="pdf-canvas"></canvas>
+                    <button id="prev-page" class="pdf-arrow prev"><i class="material-icons">chevron_left</i></button>
+                    <button id="next-page" class="pdf-arrow next"><i class="material-icons">chevron_right</i></button>
+                </div>
 
-      // Scale context for high DPI screens
-      ctx.scale(outputScale, outputScale);
+                <div class="text-center mt-4">
+                    <a target="_blank" href="../documents/vintigue_split.pdf" class="btn btn-primary-custom btn-lg fw-medium d-inline-flex align-items-center gap-2">
+                        View Full PDF
+                        <i class="material-icons">launch</i>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-      return page.render({
-        canvasContext: ctx,
-        viewport: viewport,
-      }).promise;
-    });
-  }
+        <hr class="container my-5">
 
-    // Render a spread based on currentSpread value.
-    function renderSpread() {
-      // Clear both canvases
-      ctxLeft.clearRect(0, 0, canvasLeft.width, canvasLeft.height);
-      ctxRight.clearRect(0, 0, canvasRight.width, canvasRight.height);
-      
-      // Hide both canvases initially.
-      canvasLeft.style.display = 'none';
-      canvasRight.style.display = 'none';
-      
-      // Determine total pages and spread mapping:
-      // Spread 0: first page (display right only, aligned right)
-      // Last spread: last page (display left only, aligned left)
-      // Otherwise, intermediate spreads display two pages:
-      //   left = 2 + 2*(currentSpread-1), right = left + 1.
-      const n = pdfDoc.numPages;
-      if (currentSpread === 0) {
-        // First spread: show page 1 on right.
-        renderPage(1, canvasRight, ctxRight).then(() => {
-          canvasRight.style.display = 'block';
-          canvasRight.classList.add('align-right');
-          canvasLeft.classList.remove('align-left');
-        });
-      } else if (currentSpread === totalSpreads - 1) {
-        // Last spread: show last page on left.
-        renderPage(n, canvasLeft, ctxLeft).then(() => {
-          canvasLeft.style.display = 'block';
-          canvasLeft.classList.add('align-left');
-          canvasRight.classList.remove('align-right');
-        });
-      } else {
-        // Intermediate spread: display two pages.
-        let i = currentSpread - 1; // intermediate spread index
-        let leftPage = 2 + 2 * i;
-        let rightPage = leftPage + 1;
-        Promise.all([
-          renderPage(leftPage, canvasLeft, ctxLeft),
-          renderPage(rightPage, canvasRight, ctxRight)
-        ]).then(() => {
-          canvasLeft.style.display = 'block';
-          canvasRight.style.display = 'block';
-          // Remove any alignment classes if present.
-          canvasLeft.classList.remove('align-left');
-          canvasRight.classList.remove('align-right');
-        });
-      }
-    }
+        <section id="reflection" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">Reflection & Results</h2>
+                
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">lightbulb</i> What I Learned</h4>
+                        <p class="text-gray-600">
+                            This project deepened my understanding of how storytelling and design intersect to shape an audience’s perception. I learned how to blend narrative voice with visual form, and how collaborative editing enhances creative outcomes.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">trending_up</i> Outcomes & Impact</h4>
+                        <p class="text-gray-600">
+                            The final magazine successfully captured the essence of sustainability and vintage culture, receiving positive peer and mentor feedback for both writing quality and design cohesion. It also strengthened my skills in multi-disciplinary teamwork.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-3 text-center">
+                    <a href="../index.html#projects" class="btn btn-link text-dark-emphasis text-decoration-none fw-medium p-0 d-inline-flex align-items-center gap-1">
+                        <i class="material-icons small">arrow_back</i>
+                        Back to All Projects
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    // Navigation handlers.
-    function onPrevPage() {
-      if (currentSpread <= 0) return;
-      currentSpread--;
-      renderSpread();
-    }
+    </main>
 
-    function onNextPage() {
-      if (currentSpread >= totalSpreads - 1) return;
-      currentSpread++;
-      renderSpread();
-    }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="../js/pdf-viewer.js"></script>
 
-    pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc_) {
-    pdfDoc = pdfDoc_;
-    totalSpreads = Math.ceil(pdfDoc.numPages / 2) + 1;
-    renderSpread();
-  }).catch(function (error) {
-    console.error("Error loading PDF: ", error);
-  });
-
-    document.getElementById('prev-page').addEventListener('click', onPrevPage);
-    document.getElementById('next-page').addEventListener('click', onNextPage);
-  </script>
 </body>
 </html>

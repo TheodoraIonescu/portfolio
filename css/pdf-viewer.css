@@ -1,0 +1,41 @@
+.pdf-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-width: 100%;
+  min-height: 500px;
+}
+
+.pdf-canvas {
+  border: 1px solid #ddd;
+  display: none;
+  max-width: 48%;
+  background: #fff;
+}
+
+.pdf-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.pdf-arrow:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.pdf-arrow.prev {
+  left: 10px;
+}
+
+.pdf-arrow.next {
+  right: 10px;
+}

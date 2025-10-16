@@ -1,172 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Media Management – Project Details</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #fff8fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Navigation */
-    nav {
-      background: #ffb6c1;
-      padding: 15px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: inline-flex;
-    }
-    nav ul li {
-      margin: 0 20px;
-    }
-    nav ul li a {
-      font-size: 18px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background: #ff9bb3;
-      transform: translateY(-2px);
-      font-weight: 600;
-    }
-
-    /* Main Content Layout for the Project */
-    .project-details {
-      display: flex;
-      height: calc(100vh - 60px);
-      flex-wrap: wrap;
-      padding: 20px;
-    }
-
-    /* Text Box for Project Details */
-    .project-text {
-      width: 60%;
-      padding: 20px;
-      overflow-y: auto;
-      box-sizing: border-box;
-      background: #fdfdfd;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-    }
-    .project-text h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #cc3366;
-    }
-    .project-text p {
-      margin-bottom: 16px;
-      text-align: justify;
-    }
-
-    /* Button Styles */
-    .marketing-button {
-      display: block;
-      margin: 0px auto;
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #cc3366;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .marketing-button:hover {
-      background-color: #b22a5b;
-      transform: translateY(-2px);
-    }
-
-    /* TikTok Video Container */
-    .tiktok-container {
-      width: 40%;
-      padding: 20px;
-      box-sizing: border-box;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .tiktok-container iframe {
-      margin-bottom: 20px;
-      border-radius: 8px;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      nav ul li { margin: 0 10px; }
-      .project-text, .tiktok-container {
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-      }
-      .project-text h1 { font-size: 24px; }
-      .project-details {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Management | Theodora's Portfolio</title>
+    <link href="../styles.css" rel="stylesheet">
+    <link href="../css/snowy.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Material+Icons" rel="stylesheet" />
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../projects.html" class="active">Projects</a></li>
-      <li><a href="../documents/cv.pdf">CV</a></li>
-    </ul>
-  </nav>
 
-  <section class="project-details">
-    <!-- Project Text Box -->
-    <div class="project-text">
-      <h1>Tattoo Design Snowy – Marketing Plan Development</h1>
-    <p>
-    In this project, I worked closely with my team to develop a tailored marketing plan for Tattoo Design Snowy, a new tattoo shop in Breda aiming to increase visibility and attract more customers. The shop's target audience consists of young people and individuals seeking a personal, one-on-one tattoo experience in a more private and welcoming environment.
-    </p>
-    <p>
-    My primary role was to contribute to the creation of the marketing plan and develop a content strategy that resonated with the shop’s brand identity. I helped design a content calendar, ensuring we had consistent and engaging posts for social media platforms. Additionally, we created content, including promotional materials and visuals that aligned with the soft, personal, and homely atmosphere Snowy wanted to convey.
-    </p>
-    <p>
-    I also worked closely with my team to pitch our ideas to the client, collaborating with Snowy to refine the content and promotional tactics. This involved researching effective marketing strategies for small businesses and ensuring the plan was actionable and aligned with the shop’s values and goals.
-    </p>
-    <p>
-    Through this project, I enhanced my skills in client collaboration, content creation, and strategic planning, learning how to execute a marketing campaign that speaks directly to a specific, niche audience.
-    </p>
-      <button class="marketing-button">
-        <a href="https://drive.google.com/drive/u/1/folders/1o9RU28RSvYSkRC9i_eWSr7lcacC6AI4U" target="_blank">View Marketing Plan and Content Strategies</a>
-      </button>
-    </div>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom p-0">
+        <div class="container-fluid py-2 px-3">
+            <a class="navbar-brand text-dark-emphasis fw-bold fs-5" href="../index.html">Theodora</a>
+            
+            <button class="navbar-toggler border-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons">menu</i>
+            </button>
 
-    <div class="tiktok-container">
-      <h2>Featured TikTok idea she used for her account</h2>
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@noelle_frijters/video/7494986141003713814" data-video-id="7494986141003713814" style="max-width: 325px;min-width: 325px;">
-        <section></section>
-      </blockquote>
-      <script async src="https://www.tiktok.com/embed.js"></script>
-    </div>
-    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#home"><i class="material-icons fs-5">home</i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#skills"><i class="material-icons fs-5">star</i> Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#projects"><i class="material-icons fs-5">folder</i> Projects</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="bg-white py-5 py-lg-7">
+            <div class="container">
+                <h1 class="display-4 fw-bold text-dark-emphasis mb-3 text-center text-lg-start">
+                    Tattoo Design Snowy – Social Media Marketing Plan
+                </h1>
+                
+                <div class="row g-5 align-items-start">
+                    
+                    <div class="col-lg-8">
+                        <p class="lead text-gray-600 mb-4">
+                            <strong>Brief Overview:</strong> Developed a tailored marketing plan and social media content strategy for Tattoo Design Snowy, a new boutique tattoo shop in Breda. The goal was to increase visibility and attract niche clientele through consistent, engaging posts and strategic campaigns.
+                        </p>
+                        <div class="hero-image-wrap rounded-3 overflow-hidden shadow-lg mb-4">
+                            <img src="../images/thumbnails/snowy-thumbnail.png" alt="Tattoo Design Snowy Thumbnail" class="hero-image" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="p-4 bg-light rounded-3 shadow-sm sticky-top" style="top: 8rem;">
+                            <h5 class="fw-bold text-dark-emphasis mb-3">Project Details</h5>
+                            <ul class="list-unstyled mb-0 d-grid gap-3">
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">My Role:</p>
+                                    <p class="mb-0 text-gray-600">Marketing Strategist & Social Media Content Creator</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Tools & Skills:</p>
+                                    <p class="mb-0 text-gray-600">Social Media Strategy, Content Creation, Canva, Google Drive</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Timeline:</p>
+                                    <p class="mb-0 text-gray-600">4 Weeks (Marketing & Planning Phase)</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Client/Context:</p>
+                                    <p class="mb-0 text-gray-600">Tattoo Design Snowy – Boutique Tattoo Shop, Breda</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="contributions" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">My Contributions</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Marketing Plan Development</h5>
+                        <p class="text-gray-600">
+                            Collaborated with the team to design a full marketing plan tailored to Tattoo Design Snowy’s brand, target audience, and goals.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Content Strategy & Creation</h5>
+                        <p class="text-gray-600">
+                            Developed a content calendar, promotional visuals, and posts aligned with the shop’s soft and personal brand identity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="container my-5">
+
+        <section id="deliverable" class="py-5 py-lg-8">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis text-center">The Final Deliverable</h2>
+                <p class="lead text-gray-600 mb-5 mx-auto text-center" style="max-width: 700px;">
+                    Marketing plan and featured social media content, including a TikTok video idea that was implemented for the client.
+                </p>
+
+                <div class="bg-light p-5 text-center rounded-3 shadow-lg mb-4">
+                    <div class="tiktok-container mx-auto">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@noelle_frijters/video/7494986141003713814" data-video-id="7494986141003713814" style="max-width: 325px;min-width: 325px;">
+                            <section></section>
+                        </blockquote>
+                        <script async src="https://www.tiktok.com/embed.js"></script>
+                    </div>
+                    <a href="https://drive.google.com/drive/u/1/folders/1o9RU28RSvYSkRC9i_eWSr7lcacC6AI4U" target="_blank" class="btn btn-primary-custom btn-lg fw-medium mt-3 d-inline-flex align-items-center gap-2">
+                            View Marketing Plan & Content Strategies
+                            <i class="material-icons">launch</i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="container my-5">
+
+        <section id="reflection" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">Reflection & Results</h2>
+                
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">lightbulb</i> What I Learned</h4>
+                        <p class="text-gray-600">
+                            Enhanced my skills in strategic social media planning, client collaboration, content creation, and designing campaigns for niche audiences.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">trending_up</i> Outcomes & Impact</h4>
+                        <p class="text-gray-600">
+                            Successfully delivered an actionable marketing plan and content strategy. The client received creative, branded social media material and a TikTok campaign idea implemented in real-world promotions.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-3 text-center">
+                    <a href="index.html#projects" class="btn btn-link text-dark-emphasis text-decoration-none fw-medium p-0 d-inline-flex align-items-center gap-1">
+                        <i class="material-icons small">arrow_back</i>
+                        Back to All Projects
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

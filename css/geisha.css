@@ -17,6 +17,6 @@ flex-direction: row;
 margin-top: 40px;
 }
 body {
-    background: url('../images//thumbnails/geisha.jpg') no-repeat center center fixed;
+    background: url('../images//thumbnails/geisha-thumbnail.jpg') no-repeat center center fixed;
     background-size: cover;
 }

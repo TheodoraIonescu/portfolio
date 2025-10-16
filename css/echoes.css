@@ -1,0 +1,33 @@
+.cover-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.cover-image {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 4px;
+    display: block;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.video-player {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    background: #000;
+}

@@ -1,185 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Short Film Project</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #fff8fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Navigation */
-    nav {
-      background: #ffb6c1;
-      padding: 15px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: inline-flex;
-    }
-    nav ul li {
-      margin: 0 20px;
-    }
-    nav ul li a {
-      font-size: 18px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background: #ff9bb3;
-      transform: translateY(-2px);
-      font-weight: 600;
-    }
-    /* Main Content Layout */
-    .shortfilm-project {
-      display: flex;
-      height: calc(100vh - 60px);
-      flex-wrap: wrap;
-    }
-    .project-text {
-      width: 40%;
-      padding: 20px;
-      overflow-y: auto;
-      box-sizing: border-box;
-      background: #fdfdfd;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-    }
-    .project-text h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #cc3366;
-    }
-    .project-text p {
-      margin-bottom: 16px;
-      text-align: justify;
-    }
-    /* Video Container Styles */
-    .video-container {
-      width: 60%;
-      position: relative;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      padding: 20px;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Cover Image Styles */
-    .cover-wrapper {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-    }
-    .cover-image {
-      max-width: 100%;
-      max-height: 85vh; /* Smaller cover image */
-      border-radius: 4px;
-      display: block;
-    }
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 18px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    /* Video Player Styles */
-    .video-player {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      background: #000;
-    }
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      nav ul li { margin: 0 10px; }
-      .project-text, .video-container {
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-      }
-      .project-text h1 { font-size: 24px; }
-      .shortfilm-project {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoes of Redemption | Theodora's Portfolio</title>
+    <link href="../styles.css" rel="stylesheet">
+    <link href="../css/echoes.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Material+Icons" rel="stylesheet" />
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../projects.html" class="active">Projects</a></li>
-      <li><a href="../documents/cv.pdf">CV</a></li>
-    </ul>
-  </nav>
 
-  <section class="shortfilm-project">
-    <div class="project-text">
-      <h1>Echoes of Redemption – Short Film Production</h1>
-      <p>
-        As part of a collaborative film production project, I took on the role of producer for Echoes of Redemption, a character-driven short film centered on the complex relationship between the protagonist, Ryan, and his mother. From concept to execution, our team was responsible for every stage of the filmmaking process, including scriptwriting, pre-production, filming, and post-production.
-      </p>
-      <p>
-        In my role, I ensured seamless coordination between team members, overseeing logistics and maintaining a structured workflow. I actively managed communication with acting schools, scouted talent, and secured actors willing to bring our vision to life.
-      </p>
-      <p>
-        This project reinforced my ability to lead, problem-solve, and collaborate under pressure, providing a deep understanding of what it takes to bring a film from script to screen.
-      </p>
-    </div>
-    <div class="video-container">
-      <!-- Cover Image Overlay -->
-      <div class="cover-wrapper" id="coverWrapper">
-        <img class="cover-image" src="../images/echoes_of_redemption.jpg" alt="Echoes of Redemption Cover">
-        <button class="play-button" id="playButton">Play</button>
-      </div>
-      <!-- Video Element -->
-      <video class="video-player" id="videoPlayer" controls style="display: none;">
-        <source src="../documents/echoes_of_redemption.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom p-0">
+        <div class="container-fluid py-2 px-3">
+            <a class="navbar-brand text-dark-emphasis fw-bold fs-5" href="../index.html">Theodora</a>
+            
+            <button class="navbar-toggler border-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons">menu</i>
+            </button>
 
-  <script>
-    // Toggle cover image and video playback on click
-    const coverWrapper = document.getElementById('coverWrapper');
-    const videoPlayer = document.getElementById('videoPlayer');
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#home"><i class="material-icons fs-5">home</i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#skills"><i class="material-icons fs-5">star</i> Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#projects"><i class="material-icons fs-5">folder</i> Projects</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    coverWrapper.addEventListener('click', function() {
-      coverWrapper.style.display = 'none';
-      videoPlayer.style.display = 'block';
-      videoPlayer.play();
-    });
-  </script>
+    <main>
+        <header class="bg-white py-5 py-lg-7">
+            <div class="container">
+                <h1 class="display-5 fw-bold text-dark-emphasis mb-3 text-center text-lg-start">
+                    Echoes of Redemption – Short Film Production
+                </h1>
+                
+                <div class="row g-5 align-items-start">
+                    <div class="col-lg-8">
+                        <p class="lead text-gray-600 mb-4">
+                            <strong>Brief Overview:</strong> Collaborative short film project following the complex relationship between the protagonist and his mother. As producer, I oversaw every stage of production—scriptwriting, pre-production, filming, and post-production—ensuring a smooth workflow and cohesive execution.
+                        </p>
+                        <div class="hero-image-wrap mb-4" style="max-width: 450px;">
+                            <img src="../images/thumbnails/echoes-thumbnail.jpg" alt="Vintigue Magazine Cover" class="hero-image img-fluid rounded shadow-sm"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="p-4 bg-light rounded-3 shadow-sm sticky-top" style="top: 8rem;">
+                            <h5 class="fw-bold text-dark-emphasis mb-3">Project Details</h5>
+                            <ul class="list-unstyled mb-0 d-grid gap-3">
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">My Role:</p>
+                                    <p class="mb-0 text-gray-600">Producer, Project Coordinator</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Tools & Skills:</p>
+                                    <p class="mb-0 text-gray-600">Video Production, Team Coordination, Casting, Script Oversight</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Timeline:</p>
+                                    <p class="mb-0 text-gray-600">Full Production Cycle</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Client/Context:</p>
+                                    <p class="mb-0 text-gray-600">University Film Project</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="contributions" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">My Contributions</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Production Oversight</h5>
+                        <p class="text-gray-600">
+                            Managed logistics, schedules, and coordination across all departments to ensure smooth production. Maintained structured workflows from pre-production through post-production.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Talent & Communication</h5>
+                        <p class="text-gray-600">
+                            Coordinated with acting schools, scouted talent, and secured actors for the project. Served as main point of contact for all team members and external collaborators.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="container my-5">
+
+       <section id="deliverable" class="py-5 py-lg-8">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis text-center">The Final Deliverable</h2>
+                <p class="lead text-gray-600 mb-5 mx-auto text-center" style="max-width: 700px;">
+                    Watch the final short film below.
+                </p>
+
+                <div class="video-container mx-auto shadow-lg rounded-3 bg-light p-3">
+                    <video class="video-player" controls>
+                        <source src="../documents/echoes_of_redemption.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <hr class="container my-5">
+
+        <section id="reflection" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">Reflection & Results</h2>
+                
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">lightbulb</i> What I Learned</h4>
+                        <p class="text-gray-600">
+                            Strengthened my skills in leadership, logistics, and creative problem-solving. Gained hands-on experience in film production workflows and team collaboration.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">trending_up</i> Outcomes & Impact</h4>
+                        <p class="text-gray-600">
+                            Successfully produced a character-driven short film, receiving positive feedback for both narrative and production quality. The project reinforced effective coordination and collaborative filmmaking.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-3 text-center">
+                    <a href="../index.html#projects" class="btn btn-link text-dark-emphasis text-decoration-none fw-medium p-0 d-inline-flex align-items-center gap-1">
+                        <i class="material-icons small">arrow_back</i>
+                        Back to All Projects
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../js/echoes.js"></script>
+
 </body>
 </html>

@@ -1,159 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Short Documentary Project</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #fff8fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Navigation */
-    nav {
-      background: #ffb6c1;
-      padding: 15px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: inline-flex;
-    }
-    nav ul li {
-      margin: 0 20px;
-    }
-    nav ul li a {
-      font-size: 18px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background: #ff9bb3;
-      transform: translateY(-2px);
-      font-weight: 600;
-    }
-    /* Main Content Layout for the Short Film Project */
-    .shortfilm-project {
-      display: flex;
-      height: calc(100vh - 60px);
-      flex-wrap: wrap;
-    }
-    .project-text {
-      width: 40%;
-      padding: 20px;
-      overflow-y: auto;
-      box-sizing: border-box;
-      background: #fdfdfd;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-    }
-    .project-text h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #cc3366;
-    }
-    .project-text p {
-      margin-bottom: 16px;
-      text-align: justify;
-    }
-    /* Button Styles */
-    .marketing-button {
-      display: block;
-      margin: 0px auto;
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #cc3366;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .marketing-button:hover {
-      background-color: #b22a5b;
-      transform: translateY(-2px);
-    }
-    /* Video Container Styles */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Advantage | Theodora's Portfolio</title>
+    <style>
     .video-container {
-      width: 60%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .video-container video {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      background: #000;
-    }
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      nav ul li { margin: 0 10px; }
-      .project-text, .video-container {
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-      }
-      .project-text h1 { font-size: 24px; }
-      .shortfilm-project {
-        flex-direction: column;
-      }
-    }
-  </style>
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically (if the container has a defined height) */
+    /* You may also want to set a fixed height on the container if needed */
+}
+    </style>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Material+Icons" rel="stylesheet" />
 </head>
-<body>
-  <nav>
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../projects.html" class="active">Projects</a></li>
-      <li><a href="../documents/cv.pdf">CV</a></li>
-    </ul>
-  </nav>
 
-  <section class="shortfilm-project">
-    <div class="project-text">
-      <h1>Home Advantage – Documentary Development & Marketing</h1>
-      <p>
-        As part of a documentary development project, our team created Home Advantage, a short documentary concept centered on the inspiring story of a disadvantaged girl playing in a field hockey club. The film aimed to highlight the resilience and joy of disabled athletes, challenging perceptions and showcasing that happiness and passion are not limited by physical difficulties.
-    </p>
-      <p>
-        My primary role in this project was developing a comprehensive marketing plan tailored to our documentary’s goals and budget. Using the SOSTAC method and relevant marketing theories, I devised strategic promotion ideas to maximize outreach and engagement. This process deepened my understanding of documentary marketing, refining my skills in audience targeting, promotional strategy, and budget allocation.
-    </p>
-      <p>
-        This project reinforced my passion for marketing and provided valuable insights into crafting an impactful promotional campaign for a socially driven film.      </p>
-      <button class="marketing-button" ><a href="../documents/ha-marketing-plan.pdf">View Marketing Plan</a></button>
-    </div>
-    <div class="video-container">
-      <!-- HTML5 video element with controls and optional poster image -->
-      <video controls poster="../images/home_advantage.jpg">
-        <source src="../documents/home_advantage.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-custom p-0">
+        <div class="container-fluid py-2 px-3">
+            <a class="navbar-brand text-dark-emphasis fw-bold fs-5" href="../index.html">Theodora</a>
+            
+            <button class="navbar-toggler border-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons">menu</i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#home"><i class="material-icons fs-5">home</i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#skills"><i class="material-icons fs-5">star</i> Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="../index.html#projects"><i class="material-icons fs-5">folder</i> Projects</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="bg-white py-5 py-lg-7">
+            <div class="container">
+                <h1 class="display-5 fw-bold text-dark-emphasis mb-3 text-center text-lg-start">
+                    Home Advantage – Documentary Development & Marketing
+                </h1>
+                
+                <div class="row g-5 align-items-start">
+                    <div class="col-lg-8">
+                        <p class="lead text-gray-600 mb-4">
+                            <strong>Brief Overview:</strong> Short documentary concept highlighting the inspiring story of a disadvantaged girl in a field hockey club. The project emphasized the resilience and passion of disabled athletes while developing a targeted marketing plan to promote the documentary.
+                        </p>
+                        <div class="hero-image-wrap mb-4" style="max-width: 800px;">
+                            <img src="../images/thumbnails/ha-thumbnail.jpg" alt="Vintigue Magazine Cover" class="hero-image img-fluid rounded shadow-sm"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="p-4 bg-light rounded-3 shadow-sm sticky-top" style="top: 8rem;">
+                            <h5 class="fw-bold text-dark-emphasis mb-3">Project Details</h5>
+                            <ul class="list-unstyled mb-0 d-grid gap-3">
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">My Role:</p>
+                                    <p class="mb-0 text-gray-600">Marketing Strategist, Project Coordinator</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Tools & Skills:</p>
+                                    <p class="mb-0 text-gray-600">Marketing Strategy, SOSTAC, Audience Analysis, Budget Planning</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Timeline:</p>
+                                    <p class="mb-0 text-gray-600">Project Development Phase</p>
+                                </li>
+                                <li>
+                                    <p class="mb-0 fw-medium text-dark-emphasis">Client/Context:</p>
+                                    <p class="mb-0 text-gray-600">University Documentary Project</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="contributions" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">My Contributions</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Marketing Plan Development</h5>
+                        <p class="text-gray-600">
+                            Created a comprehensive marketing plan using the SOSTAC method, aligning strategy with the documentary’s goals and budget constraints.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Audience Engagement Strategy</h5>
+                        <p class="text-gray-600">
+                            Developed promotional ideas, identified target audiences, and proposed strategies to maximize engagement and visibility for the documentary.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="container my-5">
+
+        <section id="deliverable" class="py-5 py-lg-8">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis text-center">The Final Deliverable</h2>
+                <p class="lead text-gray-600 mb-5 mx-auto text-center" style="max-width: 700px;">
+                    Watch the documentary below or view the marketing plan.
+                </p>
+
+                <div class="video-container mx-auto shadow-lg rounded-3 bg-light p-3 mb-3">
+                    <video controls poster="../images/thumbnails/ha-thumbnail.jpg">
+                        <source src="../documents/home_advantage.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="text-center">
+                    <a target="_blank" href="../documents/ha-marketing-plan.pdf" class="btn btn-primary-custom btn-lg fw-medium d-inline-flex align-items-center gap-2">
+                        View Marketing Plan
+                        <i class="material-icons">launch</i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="container my-5">
+
+        <section id="reflection" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">Reflection & Results</h2>
+                
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">lightbulb</i> What I Learned</h4>
+                        <p class="text-gray-600">
+                            Refined my skills in documentary marketing, audience targeting, and budget allocation while reinforcing strategic planning abilities.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">trending_up</i> Outcomes & Impact</h4>
+                        <p class="text-gray-600">
+                            Produced a clear and actionable marketing plan complementing the documentary. Enhanced my ability to create strategies that effectively communicate socially-driven stories.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-5 pt-3 text-center">
+                    <a href="../index.html#projects" class="btn btn-link text-dark-emphasis text-decoration-none fw-medium p-0 d-inline-flex align-items-center gap-1">
+                        <i class="material-icons small">arrow_back</i>
+                        Back to All Projects
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>

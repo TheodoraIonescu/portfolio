@@ -1,0 +1,22 @@
+.project-header, .contributions, .deliverable, .reflection {
+    background: rgba(255,255,255,0.85);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.social-icon { width: 40px; height: 40px; border-radius: 8px; }
+.tiktok-container iframe { border-radius: 8px; margin-bottom: 1rem; }
+.tiktok-container {
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+flex-direction: row;
+margin-top: 40px;
+}
+body {
+    background: url('../images//thumbnails/geisha.jpg') no-repeat center center fixed;
+    background-size: cover;
+}

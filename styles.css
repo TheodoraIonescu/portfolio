@@ -42,3 +42,34 @@ body {
     max-width: 10rem;
     height: auto;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Project card hover effect */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Header load-in animation */
+.header-animated {
+    animation: fadeInSlideUp 0.8s ease-out 0.2s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

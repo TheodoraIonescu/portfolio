@@ -7,7 +7,9 @@
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Material+Icons" rel="stylesheet" />
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    </head>
 <body>
 
     <nav class="navbar navbar-expand-lg sticky-top navbar-custom p-0">
@@ -29,6 +31,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="#projects"><i class="material-icons fs-5">folder</i> Projects</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium d-flex align-items-center gap-2" href="#contact"><i class="material-icons fs-5">email</i> Contact</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -40,17 +45,17 @@
             <div class="container">
                 <div class="row g-5 align-items-center" style="min-height: 60vh;">
                     <div class="col-lg-6 order-2 order-lg-1">
-                        <h1 class="display-5 fw-bold text-dark-emphasis mb-4">
+                        <h1 class="display-5 fw-bold text-dark-emphasis mb-4 header-animated" style="animation-delay: 0.2s;">
                             Welcome to my Portfolio!
                         </h1>
-                        <p class="lead text-gray-600 mb-4 pe-lg-5">
+                        <p class="lead text-gray-600 mb-4 pe-lg-5 header-animated" style="animation-delay: 0.4s;">
                             I’m Theodora Ionescu, a passionate creative business student focused on growing in multicultural settings. I’m confident handling challenging interactions, meeting deadlines, developing marketing strategies while managing and monitoring content.
-                            <br><br>       
+                            <br><br>     
                             Get to know me!
                         </p>
                     </div>
                     <div class="col-lg-6 order-1 order-lg-2">
-                        <div class="hero-image-wrap rounded-3 overflow-hidden shadow-lg">
+                        <div class="hero-image-wrap rounded-3 overflow-hidden shadow-lg header-animated" style="animation-delay: 0.3s;">
                            <img src="images/profile.jpg" alt="Profile Image" class="hero-image" />
                         </div>
                     </div>
@@ -58,206 +63,227 @@
             </div>
         </header>
 
-        <section id="skills" class="py-5 py-lg-8">
+        <section id="skills" class="py-5 py-lg-8 bg-light">
             <div class="container text-center">
                 <p class="fw-bold text-uppercase text-dark-emphasis mb-2">My Skills</p>
                 <h2 class="fs-2 fw-bold mb-3">What I Do</h2>
                 <p class="lead text-gray-600 mb-5 mx-auto" style="max-width: 600px;">
-                   Charismatic, People-oriented, Collaborative
+                    Charismatic, People-oriented, Collaborative
                             <br><br>
-                    These three words capture my personality well. I’m highly personable and I value collaboration, thriving in team environments where ideas and perspectives are freely shared. I appreciate diverse opinions and am always eager to learn from the people I meet, both professionally and personally. I particularly enjoy working in international settings, where every individual brings unique insights and experiences to the table. Even when collaborating with challenging personalities, I see it as an opportunity to grow, adapt, and strengthen my communication skills.
+                    These three words capture my personality well. I’m highly personable and I value collaboration, thriving in team environments where ideas and perspectives are freely shared. I appreciate diverse opinions and am always eager to learn from the people I meet, both professionally and personally.
                 </p>
-                <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="p-3">
-                            <div class="card-icon-wrap">
-                                <i class="material-icons">dashboard</i>
-                            </div>
-                            <h5 class="fw-bold mb-2">Interpersonal communication</h5>
-                            <p class="text-gray-600 px-lg-4">
-                                Through my university projects, internship, and role as a social media manager, I’ve developed strong interpersonal and communication skills, allowing me to confidently engage with people from diverse backgrounds.
-                            </p>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-6">
+                    <div class="p-2">
+                        <div class="card-icon-wrap">
+                            <i class="material-icons">dashboard</i>
                         </div>
+                        <h5 class="fw-bold mb-2">Interpersonal communication</h5>
+                        <p class="text-gray-600 px-lg-4">
+                            Through my university projects, internship, and role as a social media manager, I’ve developed strong interpersonal and communication skills, allowing me to confidently engage with people from diverse backgrounds.
+                        </p>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="p-3">
-                            <div class="card-icon-wrap">
-                                <i class="material-icons">fingerprint</i>
-                            </div>
-                            <h5 class="fw-bold mb-2">Planning and Organising</h5>
-                            <p class="text-gray-600 px-lg-4">
-                                Managing multiple tasks simultaneously has helped me develop strong planning and organisational skills. I’ve learned to set clear priorities, manage my time effectively, and track progress to ensure every task is completed efficiently.
-                            </p>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="p-2">
+                        <div class="card-icon-wrap">
+                            <i class="material-icons">fingerprint</i>
                         </div>
+                        <h5 class="fw-bold mb-2">Planning and Organising</h5>
+                        <p class="text-gray-600 px-lg-4">
+                            Managing multiple tasks simultaneously has helped me develop strong planning and organisational skills. I’ve learned to set clear priorities, manage my time effectively, and track progress to ensure every task is completed efficiently.
+                        </p>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="p-3">
-                            <div class="card-icon-wrap">
-                                <i class="material-icons">palette</i>
-                            </div>
-                            <h5 class="fw-bold mb-2">Social Media Management</h5>
-                            <p class="text-gray-600 px-lg-4">
-                                Working at Geisha Lounge as a Social Media Manager gave me valuable insight into managing Instagram, TikTok, and YouTube from planning and posting content to analysing performance metrics. I focused on developing effective strategies to boost engagement and help the brand achieve its goals. I am confident in creating effective content, tailored to anyone’s needs.
-                            </p>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="p-2">
+                        <div class="card-icon-wrap">
+                            <i class="material-icons">palette</i>
                         </div>
+                        <h5 class="fw-bold mb-2">Social Media Management</h5>
+                        <p class="text-gray-600 px-lg-4">
+                            Working at Geisha Lounge as a Social Media Manager gave me valuable insight into managing Instagram, TikTok, and YouTube from planning and posting content to analysing performance metrics. I focused on developing effective strategies to boost engagement and help the brand achieve its goals.
+                        </p>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="p-3">
-                            <div class="card-icon-wrap">
-                                <i class="material-icons">palette</i>
-                            </div>
-                            <h5 class="fw-bold mb-2">Adaptability</h5>
-                            <p class="text-gray-600 px-lg-4">
-                                During my internship, I discovered my ability to adapt quickly to new environments and connect easily with people. I make the most of every opportunity to learn and grow, and I constantly challenge myself to improve both personally and professionally.
-                            </p>
-                        </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="p-2">
+                        <div class="card-icon-wrap">
+                            <i class="material-icons">trending_up</i> </div>
+                        <h5 class="fw-bold mb-2">Adaptability</h5>
+                        <p class="text-gray-600 px-lg-4">
+                            During my internship, I discovered my ability to adapt quickly to new environments and connect easily with people. I make the most of every opportunity to learn and grow, and I constantly challenge myself to improve both personally and professionally.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="projects" class="py-5 py-lg-8 bg-light">
+            <hr class="my-5 my-lg-7">
+            
+            <h3 class="fs-4 fw-bold mb-4">Tools I Use</h3>
+                <div class="d-flex flex-wrap gap-3 justify-content-center px-lg-5">
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-instagram me-2"></i>Instagram
+                    </span>
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-tiktok me-2"></i>TikTok
+                    </span>
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-youtube me-2"></i>YouTube
+                    </span>
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-trello me-2"></i>Trello
+                    </span>
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-brush me-2"></i>Canva
+                    </span>
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-palette me-2"></i>Adobe Creative Suite
+                    </span>
+                    <span class="badge fs-6 text-bg-secondary fw-medium p-3">
+                        <i class="bi bi-microsoft me-2"></i>Microsoft 365
+                    </span>
+                </div>
+                
+            </section> <section id="projects" class="py-5 py-lg-8 bg-light">
             <div class="container text-center">
                 <h2 class="fs-2 fw-bold mb-3">Previous Projects</h2>
                 <p class="lead text-gray-600 mb-5 mx-auto" style="max-width: 700px;">
-                    This section lists your past projects. Replace the placeholder text below with actual project information and links.
+                    Here are some of the projects I've worked on, from corporate internships and social media campaigns to academic and creative productions.
                 </p>
 
                 <div class="row g-4 g-xl-5 justify-content-center">
 
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
-                            <div class="overflow-hidden rounded-top" style="height: 12rem;">
+                        <div class="card border-0 shadow-sm h-100"> <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/dll-thumbnail.jpg" alt="DLL Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
+                            <div class="card-body text-start p-3 d-flex flex-column"> <a class="text-decoration-none text-dark-emphasis">
                                     <h5 class="card-title fw-bold">Marketing Intern at DLL</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     Marketing Intern at DLL, supporting the Marketing & Communications Manager in promoting insurance offerings through content creation, communication initiatives, and international collaboration.
                                 </p>
-                                <a href="projects-subpages/dll.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
-                            </div>
+                                <a href="projects-subpages/dll.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a> </div>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/geisha-thumbnail.jpg" alt="Geisha Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
                                     <h5 class="card-title fw-bold">Geisha Lounge Breda – Social Media Manager</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     I manage TikTok and Instagram content for Geisha Lounge Breda, boosting engagement and brand presence, while also producing podcasts to connect with customers.
                                 </p>
-                                <a href="projects-subpages/geisha.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/geisha.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/snowy-thumbnail.png" alt="Snowy Tattoos Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
-                                    <h5 class="card-title fw-bold">Tattoo Design Snowy – Marketing Plan Development</h5>
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
+                                    <h5 class="card-title fw-bold">Tattoo Design Snowy – Marketing Plan</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     Created a targeted marketing plan for a new tattoo shop, focusing on brand identity, content strategy, and social media engagement.
                                 </p>
-                                <a href="projects-subpages/snowy-tattos.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/snowy-tattos.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
 
                     
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/bip-thumbnail.jpg" alt="BIP Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
                                     <h5 class="card-title fw-bold">BIP: Intercultural Marketing Project</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
-                                    Collaborated with Yeșar University and Yanmar to develop an international marketing campaign aimed at increasing Yanmar’s sales and brand recognition through research and strategic planning in Turkey.
+                                    Collaborated with Yeșar University and Yanmar to develop an international marketing campaign aimed at increasing Yanmar’s sales and brand recognition.
                                 </p>
-                                <a href="projects-subpages/bip.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/bip.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/ha-thumbnail.jpg" alt="Home Advantage Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
-                                    <h5 class="card-title fw-bold">Home Advantage – Documentary Development & Marketing</h5>
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
+                                    <h5 class="card-title fw-bold">Home Advantage – Documentary Marketing</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     A documentary concept highlighting the resilience of disabled athletes. Developed a strategic marketing plan for audience engagement.
                                 </p>
-                                <a href="projects-subpages/home-advantage.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/home-advantage.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/evntprod-thumbnail.jpg" alt="Event Production Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
                                     <h5 class="card-title fw-bold">Event Production – BUas AGM Staff Events</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     Organized Thanksgiving and New Year’s staff events, overseeing marketing, volunteer coordination, and logistics.
                                 </p>
-                                <a href="projects-subpages/event-production.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/event-production.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/vintigue-thumbnail.jpg" alt="Vintigue Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
-                                    <h5 class="card-title fw-bold">Vintigue – A Vintage Fashion & Sustainability Magazine</h5>
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
+                                    <h5 class="card-title fw-bold">Vintigue – Fashion & Sustainability Magazine</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     A creative magazine exploring vintage fashion and sustainability, featuring original articles, interviews, and photography.
                                 </p>
-                                <a href="projects-subpages/vintigue.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/vintigue.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 col-xl-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card border-0 shadow-sm h-100">
                             <div class="overflow-hidden rounded-top" style="height: 12rem;">
                                 <img src="./images/thumbnails/echoes-thumbnail.jpg" alt="Echoes of Redemption Thumbnail" class="w-100 h-100 object-fit-cover">
                             </div>
-                            <div class="card-body text-start p-3">
-                                <a href="#" class="text-decoration-none text-dark-emphasis">
-                                    <h5 class="card-title fw-bold">Echoes of Redemption – Short Film Production</h5>
+                            <div class="card-body text-start p-3 d-flex flex-column">
+                                <a class="text-decoration-none text-dark-emphasis">
+                                    <h5 class="card-title fw-bold">Echoes of Redemption – Short Film</h5>
                                 </a>
                                 <p class="card-text text-gray-600">
                                     A character-driven short film focusing on complex family dynamics. Managed production logistics, casting, and coordination.
                                 </p>
-                                <a href="projects-subpages/echoes-redemption.html" class="btn btn-sm btn-outline-secondary mt-2">See Details</a>
+                                <a href="projects-subpages/echoes-redemption.html" class="btn btn-sm btn-outline-secondary mt-auto">See Details</a>
                             </div>
                         </div>
                     </div>
@@ -269,43 +295,74 @@
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
-                        <h2 class="fs-2 fw-bold mb-3">My Resume</h2>
+                        <h2 class="fs-2 fw-bold mb-3">My Experience</h2>
                         <p class="lead text-gray-600 mb-4">
-                            This is placeholder text summarizing your professional background and experience. Replace it with your actual biography or career highlights.
+                            My experience is built on a foundation of creative business studies, hands-on marketing internships, and practical social media management. I excel in multicultural environments and am always looking for new challenges to grow.
                         </p>
-                        <a target="_blank" href="#" class="btn btn-link text-dark-emphasis text-decoration-none fw-medium p-0 d-inline-flex align-items-center gap-1">
-                            View More
-                            <i class="material-icons small">arrow_right_alt</i>
+                        <a target="_blank" href="documents/Theodora_Ionescu_Resume.pdf" class="btn btn-primary-custom fw-medium d-inline-flex align-items-center gap-2">
+                            Download My Resume
+                            <i class="material-icons small">download</i>
                         </a>
                     </div>
                     <div class="col-lg-6">
                         <div class="d-grid gap-4">
                             <div class="d-flex align-items-start gap-3">
                                 <div class="resume-icon-wrap">
-                                    <i class="material-icons">bar_chart</i>
+                                    <i class="material-icons">school</i>
                                 </div>
-                                <p class="text-gray-600 pt-1">Placeholder Education Detail</p>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Creative Business Student</h6>
+                                    <p class="text-gray-600 mb-0">Developing a strong foundation in marketing, content creation, and strategy in international settings.</p>
+                                </div>
                             </div>
                             <div class="d-flex align-items-start gap-3">
                                 <div class="resume-icon-wrap">
-                                    <i class="material-icons">extension</i>
+                                    <i class="material-icons">business_center</i>
                                 </div>
-                                <p class="text-gray-600 pt-1">Placeholder Certification</p>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Marketing & Communications</h6>
+                                    <p class="text-gray-600 mb-0">Hands-on experience at DLL, creating content, supporting internal communications, and collaborating with global teams.</p>
+                                </div>
                             </div>
                             <div class="d-flex align-items-start gap-3">
                                 <div class="resume-icon-wrap">
-                                    <i class="material-icons">navigation</i>
+                                    <i class="material-icons">public</i>
                                 </div>
-                                <p class="text-gray-600 pt-1">Placeholder Achievement</p>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Social Media Management</h6>
+                                    <p class="text-gray-600 mb-0">Managed Instagram, TikTok, and YouTube for Geisha Lounge, focusing on content strategy, production, and performance analysis.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        </main>
 
-    </main>
-
+    <footer id="contact" class="py-5 bg-dark text-bg-dark">
+        <div class="container text-center">
+            <h3 class="fs-4 fw-bold mb-3">Get in Touch</h3>
+            <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 500px;">
+                I'm always open to new opportunities and collaborations. Feel free to reach out!
+            </p>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="mailto:youremail@example.com" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                    <i class="material-icons">email</i>
+                    Email Me
+                </a>
+                <a href="#" target="_blank" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+            <p class="text-white-50 small mb-0">
+                &copy; <span id="current-year">2024</span> Theodora Ionescu. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>

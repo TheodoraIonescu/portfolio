@@ -181,6 +181,28 @@ body {
     background-color: var(--color-dark-text);
 }
 
+.brand-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: -0.125em;
+    filter: invert(1) !important;
+    background-color: transparent !important;
+}
+
+.brand-canva {
+    background-image: url('images/icons/canva.svg');
+}
+.brand-capcut {
+    background-image: url('images/icons/capcut.svg');
+}
+.brand-adobe {
+    background-image: url('images/icons/adobe.svg');
+}
+
 
 /* Header Load-in Animation */
 .header-animated {

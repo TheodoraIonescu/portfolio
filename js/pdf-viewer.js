@@ -1,6 +1,6 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
-    const pdfUrl = '../documents/vintigue_split.pdf'; // Adjust if needed
+    const pdfUrl = document.querySelector('.pdf-container').dataset.pdf;
     let pdfDoc = null,
         currentSpread = 0,  // 0-based index for spreads
         totalSpreads = 0,

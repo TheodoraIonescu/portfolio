@@ -249,3 +249,19 @@ body {
     font-size: 1.5rem;
     margin: 0 0.5rem;
 }
+
+/* --- Project page (project.html) --- */
+.page-section {
+    background-color: var(--color-white);
+}
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.reflection-text ul {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    gap: 0.5rem;
+}

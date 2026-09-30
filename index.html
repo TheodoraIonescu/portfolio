@@ -1,177 +1,383 @@
 <!DOCTYPE html>
-<html lang="en" data-md-src="content/home.md">
+<html lang="en" data-md-src="content/home.md" data-page="home" data-boot>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title data-md="page_title"></title>
     <meta name="description" data-md-attr="content={description}">
+    <meta name="theme-color" content="#060608">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23060608'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23d7ff3e'/%3E%3C/svg%3E">
+    <!-- Before first paint: page-transition and boot state (see js/site.js and js/home.js). -->
+    <script>
+        (function (d) {
+            d.classList.add('js');
+            try {
+                var s = sessionStorage, pt = s.getItem('pt');
+                if (pt !== null) { d.classList.add('pt-in'); d.dataset.ptLabel = pt; s.removeItem('pt'); }
+                else if (!s.getItem('booted') && !matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('boot-on');
+            } catch (e) {}
+        })(document.documentElement);
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&family=Unbounded:wght@300..900&display=swap" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
     <link href="css/home.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
     <script src="js/template.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script src="js/shader.js" defer></script>
+    <script src="js/home.js" defer></script>
 </head>
 <body>
+    <a class="skip" href="#projects">Skip to the work</a>
+    <div class="grain" aria-hidden="true"></div>
 
-    <nav class="site-nav" aria-label="Main">
-        <div class="wrap">
-            <a class="brand" href="#home">Theodora Ionescu<span class="brand-dot">.</span></a>
-            <div class="nav-links">
-                <a href="#projects" data-spy="projects">Work</a>
-                <a href="#skills" data-spy="skills" class="hide-sm">Strengths</a>
-                <a href="#resume" data-spy="resume" class="hide-sm">Experience</a>
-                <a href="#contact" class="nav-cta">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></a>
+    <!-- Liquid distortion for card images on hover (js/home.js animates the scale). -->
+    <svg class="fx-defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <filter id="liquid" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011 0.028" numOctaves="2" seed="4" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+    </svg>
+
+    <header class="nav">
+        <div class="wrap nav-inner">
+            <a class="brand" href="#home" data-magnetic="0.15"><span class="brand-mark" aria-hidden="true"></span><span>Theodora Ionescu<span class="brand-dot">.</span></span></a>
+            <nav class="nav-links" aria-label="Main">
+                <span class="nav-pill" aria-hidden="true"></span>
+                <a href="#projects" data-spy="projects" data-label="Work"><span>01</span>Work</a>
+                <a href="#formats" data-spy="formats" data-label="Formats"><span>02</span>Formats</a>
+                <a href="#skills" data-spy="skills" data-label="Strengths"><span>03</span>Strengths</a>
+                <a href="#resume" data-spy="resume" data-label="Experience"><span>04</span>Experience</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn nav-kbd" type="button" data-palette-open aria-label="Open command menu"><kbd data-mod>⌘</kbd><kbd>K</kbd></button>
+                <button class="icon-btn sound" type="button" data-sound aria-pressed="false" aria-label="Interface sound"><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+                <a class="btn btn-sm nav-cta" href="#contact" data-label="Contact" data-magnetic="0.2"><span data-roll>Get in touch</span></a>
+                <button class="icon-btn burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i></i><i></i></button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <main class="wrap">
+    <main>
 
-        <header id="home" class="hero">
-            <h1><span data-md="name"></span> <span class="muted" data-md="tagline"></span></h1>
-            <div class="hero-photo">
-                <img src="images/profile.jpg" data-md-attr="alt={name}">
+        <!-- ============ Hero: a magazine cover from the future ============ -->
+        <section id="home" class="hero" aria-label="Introduction">
+            <canvas class="hero-gl" data-shader aria-hidden="true"></canvas>
+            <div class="hero-shade" aria-hidden="true"></div>
+
+            <div class="wrap hero-top mono" aria-hidden="true">
+                <span class="hud">[ Portfolio ] <b>Edition <span data-year>2026</span></b></span>
+                <span class="hud"><span data-md="location"></span> <b data-clock data-seconds></b></span>
             </div>
-        </header>
 
-        <section id="projects" class="work" aria-labelledby="work-title">
-            <div class="work-head">
-                <h2 id="work-title" class="section-title"><span data-md="work_title"></span> <span class="muted" data-md="work_subtitle"></span></h2>
-                <div class="filters" role="group" aria-label="Filter projects">
-                    <button type="button" data-filter="All" aria-pressed="true">All</button>
-                    <button type="button" data-filter="Marketing" aria-pressed="false">Marketing</button>
-                    <button type="button" data-filter="Social media" aria-pressed="false">Social media</button>
-                    <button type="button" data-filter="Film" aria-pressed="false">Film</button>
-                    <button type="button" data-filter="Events" aria-pressed="false">Events</button>
-                    <button type="button" data-filter="Editorial" aria-pressed="false">Editorial</button>
+            <div class="wrap hero-grid">
+                <div class="hero-lines">
+                    <p class="hero-tagline" data-md="tagline" data-split="words"></p>
+                    <ul class="hero-index mono" aria-label="At a glance"></ul>
+                    <a class="btn btn-ghost hero-cta" href="#projects" data-magnetic="0.25"><span data-roll>Explore the work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+                </div>
+
+                <div class="holo">
+                    <div class="holo-float">
+                        <div class="holo-card">
+                            <div class="holo-head mono" aria-hidden="true"><span>Access pass</span><span>No. 0001</span></div>
+                            <div class="holo-photo"><img src="images/profile.jpg" data-md-attr="alt={name}" width="1609" height="1149" fetchpriority="high"></div>
+                            <div class="holo-meta" aria-hidden="true">
+                                <strong data-md="name"></strong>
+                                <span class="mono" data-md="role"></span>
+                            </div>
+                            <div class="holo-foot" aria-hidden="true"><svg class="holo-code" preserveAspectRatio="none"></svg><span class="holo-seal"></span></div>
+                            <div class="holo-foil" aria-hidden="true"></div>
+                            <div class="holo-glare" aria-hidden="true"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid-4">
-                <a class="project" href="project.html?p=geisha" data-md-src="content/projects/geisha.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/geisha-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+            <div class="wrap hero-bottom">
+                <h1 class="hero-name" data-md="name" data-split="chars"></h1>
+                <div class="hero-foot mono" aria-hidden="true">
+                    <span class="scroll-cue"><i></i>Scroll</span>
+                    <span class="hero-coords">51.59° N — 4.78° E</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="tape" aria-hidden="true">
+            <div class="tape-row tape-b"><div class="tape-track" data-marquee="-1"></div></div>
+            <div class="tape-row tape-a"><div class="tape-track" data-marquee="1"></div></div>
+        </div>
+
+        <!-- ============ Work ============ -->
+        <section id="projects" class="work" aria-labelledby="work-title">
+            <div class="wrap">
+                <div class="work-head">
+                    <div>
+                        <p class="kicker mono"><b>01</b> Work</p>
+                        <h2 id="work-title" class="section-title"><span data-md="work_title" data-split="chars"></span> <em data-md="work_subtitle" data-split="words"></em></h2>
                     </div>
-                </a>
-                <a class="project" href="project.html?p=dll" data-md-src="content/projects/dll.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/dll-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+                    <div class="work-tools" data-reveal>
+                        <div class="filters" role="group" aria-label="Filter projects">
+                            <span class="filters-pill" aria-hidden="true"></span>
+                            <button type="button" data-filter="All" aria-pressed="true">All</button>
+                            <button type="button" data-filter="Marketing" aria-pressed="false">Marketing</button>
+                            <button type="button" data-filter="Social media" aria-pressed="false">Social media</button>
+                            <button type="button" data-filter="Film" aria-pressed="false">Film</button>
+                            <button type="button" data-filter="Events" aria-pressed="false">Events</button>
+                            <button type="button" data-filter="Editorial" aria-pressed="false">Editorial</button>
+                        </div>
+                        <div class="views" role="group" aria-label="Layout">
+                            <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg></button>
+                            <button type="button" data-view="index" aria-pressed="false" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+                        </div>
                     </div>
-                </a>
-                <a class="project" href="project.html?p=bip" data-md-src="content/projects/bip.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/bip-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+                </div>
+
+                <!-- One card per project. The text comes from content/projects/<name>.md. -->
+                <div class="work-grid" data-layout="grid">
+                    <a class="project" href="project.html?p=geisha" data-md-src="content/projects/geisha.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/geisha-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=dll" data-md-src="content/projects/dll.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/dll-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=bip" data-md-src="content/projects/bip.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/bip-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=snowy-tattoos" data-md-src="content/projects/snowy-tattoos.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/snowy-thumbnail.png" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=home-advantage" data-md-src="content/projects/home-advantage.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/ha-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy" data-fit="contain"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=event-production" data-md-src="content/projects/event-production.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/evntprod-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=vintigue" data-md-src="content/projects/vintigue.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/vintigue-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                    <a class="project" href="project.html?p=echoes-redemption" data-md-src="content/projects/echoes-redemption.md" data-md-attr="data-cat={category};style=--accent: {accent};data-preview={preview}" data-cursor="View">
+                        <div class="project-media"><img src="images/thumbnails/echoes-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="project-no mono"></span>
+                            <span class="project-cat mono" data-md="category"></span>
+                            <h3 class="project-title" data-md="card_title" data-title></h3>
+                            <p class="project-sum" data-md="summary"></p>
+                            <span class="project-more mono">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="work-preview" aria-hidden="true"></div>
+        </section>
+
+        <!-- ============ Formats: phone, magazine and screen, driven by scroll ============ -->
+        <section id="formats" class="formats" aria-labelledby="formats-title">
+            <div class="formats-track">
+                <div class="formats-sticky">
+                    <div class="wrap formats-head">
+                        <p class="kicker mono"><b>02</b> Formats</p>
+                        <h2 id="formats-title" class="section-title"><span data-md="formats_title" data-split="chars"></span> <em data-md="formats_subtitle" data-split="words"></em></h2>
                     </div>
-                </a>
-                <a class="project" href="project.html?p=snowy-tattoos" data-md-src="content/projects/snowy-tattoos.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/snowy-thumbnail.png" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+
+                    <div class="formats-stage">
+                        <a class="fmt fmt-phone" href="project.html?p=geisha" data-md-src="content/projects/geisha.md" data-md-attr="data-tiktok={tiktok}" data-cursor="Watch">
+                            <span class="sr-only" data-md="card_title" data-title></span>
+                            <div class="phone">
+                                <div class="phone-frame">
+                                    <div class="phone-screen">
+                                        <div class="phone-media fmt-feed">
+                                            <div class="feed-item"><img src="images/thumbnails/geisha-thumbnail.jpg" alt=""></div>
+                                        </div>
+                                        <div class="tt">
+                                            <div class="tt-rail">
+                                                <span class="tt-avatar"></span>
+                                                <svg class="tt-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.4 2.2 4.5 6 4.5c2.2 0 3.5 1.2 4.2 2.3h.1c.7-1.1 2-2.3 4.2-2.3 3.8 0 5.7 3.9 4 7.2C17.5 16.4 12 21 12 21z"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.9 2 11.6c0 2.6 1.4 4.9 3.6 6.5L5 21.5l3.9-2c1 .3 2 .4 3.1.4 5.5 0 10-3.9 10-8.6S17.5 3 12 3z"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 4l8 7.5-8 7.5v-4.6C8.6 14.4 5 16 2 20c.8-5.8 4-10.4 12-11.4z"/></svg>
+                                                <span class="tt-disc"></span>
+                                            </div>
+                                            <div class="tt-caption"><b class="tt-author">@geisha_lounge</b><span class="tt-title"></span></div>
+                                        </div>
+                                        <div class="phone-status"><span data-clock></span><span><svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 27 12" fill="currentColor"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".45"/><rect x="2.5" y="2.5" width="16" height="7" rx="2"/><rect x="24" y="4" width="2" height="4" rx="1" opacity=".45"/></svg></span></div>
+                                        <div class="phone-island"><span class="wave"><i></i><i></i><i></i><i></i></span><span class="cam"></span></div>
+                                        <div class="phone-home"></div>
+                                    </div>
+                                </div>
+                                <div class="phone-glare"></div>
+                            </div>
+                        </a>
+
+                        <a class="fmt fmt-book" href="project.html?p=vintigue" data-md-src="content/projects/vintigue.md" data-md-attr="data-magazine={magazine}" data-cursor="Read">
+                            <span class="sr-only" data-md="card_title" data-title></span>
+                            <div class="mbook">
+                                <div class="mbook-page mbook-right"><img alt=""></div>
+                                <div class="mbook-leaf"><div class="mbook-face mbook-front"><img alt=""></div><div class="mbook-face mbook-back"><img alt=""></div></div>
+                                <div class="mbook-leaf"><div class="mbook-face mbook-front"><img src="images/thumbnails/vintigue-thumbnail.jpg" alt=""></div><div class="mbook-face mbook-back"><img alt=""></div></div>
+                            </div>
+                        </a>
+
+                        <a class="fmt fmt-screen" href="project.html?p=echoes-redemption" data-md-src="content/projects/echoes-redemption.md" data-cursor="Play">
+                            <span class="sr-only" data-md="card_title" data-title></span>
+                            <div class="screen">
+                                <div class="screen-glass">
+                                    <video muted loop playsinline preload="none" data-md-attr="src={preview};poster={video_poster}"></video>
+                                    <div class="screen-scan"></div>
+                                    <div class="screen-hud mono"><span class="rec">Rec</span><span data-timecode>00:00:00:00</span></div>
+                                    <div class="screen-bars"></div>
+                                </div>
+                                <div class="screen-floor"></div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a class="project" href="project.html?p=home-advantage" data-md-src="content/projects/home-advantage.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/ha-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+
+                    <div class="wrap formats-foot">
+                        <ol class="formats-caps">
+                            <li data-md-src="content/projects/geisha.md"><span class="mono">01 — <span data-md="category"></span></span><strong data-md="card_title"></strong></li>
+                            <li data-md-src="content/projects/vintigue.md"><span class="mono">02 — <span data-md="category"></span></span><strong data-md="card_title"></strong></li>
+                            <li data-md-src="content/projects/echoes-redemption.md"><span class="mono">03 — <span data-md="category"></span></span><strong data-md="card_title"></strong></li>
+                        </ol>
+                        <div class="formats-bar" aria-hidden="true"><i></i></div>
                     </div>
-                </a>
-                <a class="project" href="project.html?p=event-production" data-md-src="content/projects/event-production.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/evntprod-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ Strengths: cards that stack while scrolling ============ -->
+        <section id="skills" class="strengths" aria-labelledby="strengths-title">
+            <div class="wrap">
+                <div class="section-head">
+                    <p class="kicker mono"><b>03</b> Strengths</p>
+                    <h2 id="strengths-title" class="section-title"><span data-md="strengths_title" data-split="chars"></span> <em data-md="strengths_subtitle" data-split="words"></em></h2>
+                </div>
+                <!-- Items cycle through these four looks. -->
+                <div class="stack" data-md-list="strengths">
+                    <template>
+                        <article class="stack-card"><div class="stack-inner">
+                            <div class="stack-text"><span class="stack-no mono"></span><div><h3 class="stack-title" data-md-item="title"></h3><p class="stack-body" data-md-item="body"></p></div></div>
+                            <div class="stack-visual v-signal" aria-hidden="true"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><b></b></div>
+                        </div></article>
+                    </template>
+                    <template>
+                        <article class="stack-card"><div class="stack-inner">
+                            <div class="stack-text"><span class="stack-no mono"></span><div><h3 class="stack-title" data-md-item="title"></h3><p class="stack-body" data-md-item="body"></p></div></div>
+                            <div class="stack-visual v-grid" aria-hidden="true"></div>
+                        </div></article>
+                    </template>
+                    <template>
+                        <article class="stack-card"><div class="stack-inner">
+                            <div class="stack-text"><span class="stack-no mono"></span><div><h3 class="stack-title" data-md-item="title"></h3><p class="stack-body" data-md-item="body"></p></div></div>
+                            <div class="stack-visual v-orbit" aria-hidden="true"><span class="r r1"><i></i><i></i></span><span class="r r2"><i></i><i></i><i></i></span><span class="r r3"><i></i><i></i></span><b></b></div>
+                        </div></article>
+                    </template>
+                    <template>
+                        <article class="stack-card"><div class="stack-inner">
+                            <div class="stack-text"><span class="stack-no mono"></span><div><h3 class="stack-title" data-md-item="title"></h3><p class="stack-body" data-md-item="body"></p></div></div>
+                            <div class="stack-visual v-blob" aria-hidden="true"><span></span><span></span></div>
+                        </div></article>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ Experience & tools ============ -->
+        <section id="resume" class="xp" aria-labelledby="xp-title">
+            <div class="wrap xp-grid">
+                <div class="xp-main">
+                    <p class="kicker mono"><b>04</b> Experience</p>
+                    <h2 id="xp-title" class="section-title" data-md="experience_title" data-split="chars"></h2>
+                    <ol class="timeline" data-md-list="experience">
+                        <template>
+                            <li class="job" data-reveal><span class="job-node" aria-hidden="true"></span><h3 class="job-title" data-md-item="title"></h3><p class="job-body" data-md-item="body"></p></li>
+                        </template>
+                    </ol>
+                    <a class="btn btn-lg" href="documents/cv.pdf" target="_blank" rel="noopener" data-magnetic="0.25" data-reveal><span data-md="resume_button" data-roll></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg></a>
+                </div>
+                <div class="xp-side">
+                    <h2 class="tools-title mono" data-md="tools_title"></h2>
+                    <div class="orbit" aria-hidden="true"></div>
+                    <ul class="chips" data-md="tools"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ Contact ============ -->
+        <section id="contact" class="contact" aria-labelledby="contact-title">
+            <canvas class="globe" aria-hidden="true"></canvas>
+            <div class="wrap contact-inner">
+                <p class="kicker mono"><b>05</b> Contact</p>
+                <h2 id="contact-title" class="contact-title" data-md="contact_title" data-split="chars"></h2>
+                <div class="contact-links" data-reveal>
+                    <a class="contact-email" data-md-attr="href=mailto:{email}" data-md="email" data-scramble data-cursor="Write"></a>
+                    <div class="contact-row">
+                        <button class="btn btn-ghost btn-sm" type="button" data-md-attr="data-copy={email}" data-copy-message="Email address copied"><span data-roll>Copy email</span></button>
+                        <a class="contact-phone" data-md-attr="href=tel:{phone:digits}" data-md="phone"></a>
                     </div>
-                </a>
-                <a class="project" href="project.html?p=vintigue" data-md-src="content/projects/vintigue.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/vintigue-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
-                    </div>
-                </a>
-                <a class="project" href="project.html?p=echoes-redemption" data-md-src="content/projects/echoes-redemption.md" data-md-attr="data-cat={category}">
-                    <div class="project-img"><img src="images/thumbnails/echoes-thumbnail.jpg" data-md-attr="alt={card_title}" loading="lazy"></div>
-                    <div class="project-body">
-                        <div class="cat" data-md="category"></div>
-                        <div class="card-title" data-md="card_title"></div>
-                        <p class="small" data-md="summary"></p>
-                        <span class="more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg></span>
-                    </div>
-                </a>
+                </div>
+                <div class="contact-meta mono" data-reveal="fade"><span data-md="location"></span><span>Local time <b data-clock data-seconds></b></span></div>
             </div>
         </section>
     </main>
 
-    <section id="skills" class="strengths" aria-labelledby="strengths-title">
-        <div class="wrap wrap-inner">
-            <h2 id="strengths-title" class="section-title"><span data-md="strengths_title"></span> <span class="muted" data-md="strengths_subtitle"></span></h2>
-            <div class="grid-4" data-md-list="strengths">
-                <template>
-                    <div class="strength">
-                        <div class="card-title" data-md-item="title"></div>
-                        <p class="small" data-md-item="body"></p>
-                    </div>
-                </template>
-            </div>
+    <footer class="footer">
+        <div class="wrap footer-inner mono">
+            <span>&copy; <span data-year>2026</span> Theodora Ionescu</span>
+            <span class="footer-kbd">Press <kbd data-mod>⌘</kbd> <kbd>K</kbd> to search</span>
+            <button class="to-top" type="button" data-top>Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
         </div>
-    </section>
-
-    <div class="wrap">
-        <section class="about">
-            <div id="resume" class="panel experience">
-                <h2 class="section-title" data-md="experience_title"></h2>
-                <div class="jobs" data-md-list="experience">
-                    <template>
-                        <div class="job">
-                            <div class="job-title" data-md-item="title"></div>
-                            <p class="small" data-md-item="body"></p>
-                        </div>
-                    </template>
-                </div>
-                <a class="pill" href="documents/cv.pdf" target="_blank" rel="noopener" data-md="resume_button"></a>
-            </div>
-
-            <div class="side">
-                <div class="panel tools">
-                    <h2 class="section-title" data-md="tools_title"></h2>
-                    <ul class="chips" data-md="tools"></ul>
-                </div>
-                <div id="contact" class="contact">
-                    <h2 data-md="contact_title"></h2>
-                    <a class="email" data-md-attr="href=mailto:{email}" data-md="email"></a>
-                    <a class="phone" data-md-attr="href=tel:{phone:digits}" data-md="phone"></a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer class="site-footer">
-        <div class="wrap">&copy; <span id="current-year">2026</span> Theodora Ionescu</div>
     </footer>
-
-    <script src="js/home.js"></script>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

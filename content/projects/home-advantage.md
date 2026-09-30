@@ -16,10 +16,13 @@ button: View Marketing Plan
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/ha-thumbnail.jpg
-thumbnail_width: 800
 video: documents/home_advantage.mp4
 video_poster: images/thumbnails/ha-thumbnail.jpg
 button_link: documents/ha-marketing-plan.pdf
+# Short muted clip that plays on the home page card
+preview: documents/previews/home-advantage.mp4
+# Accent colour for this page and its card
+accent: "#ff7a1a"
 ---
 
 ## Overview

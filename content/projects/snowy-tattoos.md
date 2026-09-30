@@ -19,6 +19,8 @@ style: snowy
 thumbnail: images/thumbnails/snowy-thumbnail.png
 tiktok: https://www.tiktok.com/@noelle_frijters/video/7494986141003713814
 button_link: https://drive.google.com/drive/u/1/folders/1o9RU28RSvYSkRC9i_eWSr7lcacC6AI4U
+# Accent colour for this page and its card
+accent: "#c9b8ff"
 ---
 
 ## Overview

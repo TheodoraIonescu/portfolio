@@ -22,14 +22,19 @@ button: View Live Project / Download PDF
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/[image].jpg
-# Optional: maximum width of the picture in pixels
-thumbnail_width: 600
 video: documents/[video].mp4
 video_poster: images/thumbnails/[image].jpg
 pdf_viewer: documents/[magazine].pdf
 # One or more TikTok video links, separated by commas
 tiktok: https://www.tiktok.com/@[account]/video/[number]
 button_link: documents/[file].pdf
+# Magazine flip book: a folder of page images made from a PDF with scripts/magazine.sh.
+# Without it, pdf_viewer above is shown as a flip book straight from the PDF (slower).
+magazine: images/magazines/[name]
+# Short muted clip that plays when the pointer is on the home page card
+preview: documents/previews/[clip].mp4
+# Accent colour for this page and its card, in quotes
+accent: "#d7ff3e"
 # Optional page theme from the css folder, e.g. geisha
 style:
 ---

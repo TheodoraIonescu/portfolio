@@ -6,7 +6,8 @@
 //   data-md="key"                  Frontmatter value (inline Markdown), or else the
 //                                  "## Section" whose slug matches key (block Markdown).
 //   data-md-list="key"             Repeats the child <template> once per "### Item"
-//                                  inside the "## key" section.
+//                                  inside the "## key" section. With several child
+//                                  templates, items cycle through them in order.
 //   data-md-item="title|body"      Inside a list template: the item heading or its text.
 //   data-md-attr="attr=value;..."  Sets attributes. {key} in value is replaced with the
 //                                  frontmatter value, {key:digits} keeps only digits and +.
@@ -88,17 +89,17 @@
 
         for (const el of own(scope, '[data-md-list]')) {
             const key = slugify(el.dataset.mdList);
-            const tpl = el.querySelector(':scope > template');
-            if (!(key in sections) || !tpl) {
+            const tpls = el.querySelectorAll(':scope > template');
+            if (!(key in sections) || !tpls.length) {
                 console.warn(`template.js: no "## ${el.dataset.mdList}" section or <template> for ${src}`);
                 continue;
             }
-            for (const item of items(sections[key])) {
-                const node = tpl.content.cloneNode(true);
+            items(sections[key]).forEach((item, i) => {
+                const node = tpls[i % tpls.length].content.cloneNode(true);
                 node.querySelectorAll('[data-md-item="title"]').forEach(t => fill(t, item.title, true));
                 node.querySelectorAll('[data-md-item="body"]').forEach(b => fill(b, item.body, false));
                 el.appendChild(node);
-            }
+            });
         }
 
         for (const el of own(scope, '[data-md]')) {

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-md-src="../content/projects/snowy-tattoos.md">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media Management | Theodora's Portfolio</title>
+    <title data-md="page_title"></title>
     <link href="../styles.css" rel="stylesheet">
     <link href="../css/snowy.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Material+Icons" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
+    <script src="../js/template.js" defer></script>
 </head>
 <body>
 
@@ -38,15 +40,13 @@
     <main>
         <header class="bg-white py-5 py-lg-7">
             <div class="container">
-                <h1 class="display-5 fw-bold text-dark-emphasis mb-3 text-center text-lg-start">
-                    Tattoo Design Snowy – Social Media Marketing Plan
-                </h1>
+                <h1 class="display-5 fw-bold text-dark-emphasis mb-3 text-center text-lg-start" data-md="title"></h1>
                 
                 <div class="row g-5 align-items-start">
                     
                     <div class="col-lg-8">
                         <p class="lead text-gray-600 mb-4">
-                            <strong>Brief Overview:</strong> Developed a tailored marketing plan and social media content strategy for Tattoo Design Snowy, a new boutique tattoo shop in Breda. The goal was to increase visibility and attract niche clientele through consistent, engaging posts and strategic campaigns.
+                            <strong>Brief Overview:</strong> <span data-md="overview"></span>
                         </p>
                         <div class="hero-image-wrap rounded-3 overflow-hidden shadow-lg mb-4">
                             <img src="../images/thumbnails/snowy-thumbnail.png" alt="Tattoo Design Snowy Thumbnail" class="hero-image" />
@@ -59,19 +59,19 @@
                             <ul class="list-unstyled mb-0 d-grid gap-3">
                                 <li>
                                     <p class="mb-0 fw-medium text-dark-emphasis">My Role:</p>
-                                    <p class="mb-0 text-gray-600">Marketing Strategist & Social Media Content Creator</p>
+                                    <p class="mb-0 text-gray-600" data-md="role"></p>
                                 </li>
                                 <li>
                                     <p class="mb-0 fw-medium text-dark-emphasis">Tools & Skills:</p>
-                                    <p class="mb-0 text-gray-600">Social Media Strategy, Content Creation, Canva, Google Drive</p>
+                                    <p class="mb-0 text-gray-600" data-md="tools"></p>
                                 </li>
                                 <li>
                                     <p class="mb-0 fw-medium text-dark-emphasis">Timeline:</p>
-                                    <p class="mb-0 text-gray-600">4 Weeks (Marketing & Planning Phase)</p>
+                                    <p class="mb-0 text-gray-600" data-md="timeline"></p>
                                 </li>
                                 <li>
                                     <p class="mb-0 fw-medium text-dark-emphasis">Client/Context:</p>
-                                    <p class="mb-0 text-gray-600">Tattoo Design Snowy – Boutique Tattoo Shop, Breda</p>
+                                    <p class="mb-0 text-gray-600" data-md="context"></p>
                                 </li>
                             </ul>
                         </div>
@@ -83,19 +83,13 @@
         <section id="contributions" class="py-5 bg-white">
             <div class="container">
                 <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis">My Contributions</h2>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Marketing Plan Development</h5>
-                        <p class="text-gray-600">
-                            Collaborated with the team to design a full marketing plan tailored to Tattoo Design Snowy’s brand, target audience, and goals.
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> Content Strategy & Creation</h5>
-                        <p class="text-gray-600">
-                            Developed a content calendar, promotional visuals, and posts aligned with the shop’s soft and personal brand identity.
-                        </p>
-                    </div>
+                <div class="row g-4" data-md-list="my-contributions">
+                    <template>
+                        <div class="col-md-6">
+                            <h5 class="fw-bold text-dark-emphasis mb-2 d-flex align-items-center gap-2"><i class="material-icons">check_circle</i> <span data-md-item="title"></span></h5>
+                            <p class="text-gray-600" data-md-item="body"></p>
+                        </div>
+                    </template>
                 </div>
             </div>
         </section>
@@ -104,10 +98,8 @@
 
         <section id="deliverable" class="py-5 py-lg-8">
             <div class="container">
-                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis text-center">The Final Deliverable</h2>
-                <p class="lead text-gray-600 mb-5 mx-auto text-center" style="max-width: 700px;">
-                    Marketing plan and featured social media content, including a TikTok video idea that was implemented for the client.
-                </p>
+                <h2 class="fs-3 fw-bold mb-4 text-dark-emphasis text-center" data-md="deliverable_heading"></h2>
+                <p class="lead text-gray-600 mb-5 mx-auto text-center" style="max-width: 700px;" data-md="deliverable"></p>
 
                 <div class="bg-light p-5 text-center rounded-3 shadow-lg mb-4">
                     <div class="tiktok-container mx-auto">
@@ -117,8 +109,8 @@
                         <script async src="https://www.tiktok.com/embed.js"></script>
                     </div>
                     <a href="https://drive.google.com/drive/u/1/folders/1o9RU28RSvYSkRC9i_eWSr7lcacC6AI4U" target="_blank" class="btn btn-primary-custom btn-lg fw-medium mt-3 d-inline-flex align-items-center gap-2">
-                            View Marketing Plan & Content Strategies
-                            <i class="material-icons">launch</i>
+                        <span data-md="button"></span>
+                        <i class="material-icons">launch</i>
                     </a>
                 </div>
             </div>
@@ -133,15 +125,11 @@
                 <div class="row g-5">
                     <div class="col-lg-6">
                         <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">lightbulb</i> What I Learned</h4>
-                        <p class="text-gray-600">
-                            Enhanced my skills in strategic social media planning, client collaboration, content creation, and designing campaigns for niche audiences.
-                        </p>
+                        <p class="text-gray-600" data-md="what-i-learned"></p>
                     </div>
                     <div class="col-lg-6">
                         <h4 class="fw-bold mb-3 text-dark-emphasis d-flex align-items-center gap-2"><i class="material-icons">trending_up</i> Outcomes & Impact</h4>
-                        <p class="text-gray-600">
-                            Successfully delivered an actionable marketing plan and content strategy. The client received creative, branded social media material and a TikTok campaign idea implemented in real-world promotions.
-                        </p>
+                        <p class="text-gray-600" data-md="outcomes-impact"></p>
                     </div>
                 </div>
                 

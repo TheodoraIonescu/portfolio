@@ -247,6 +247,7 @@ h1, h2, p { margin: 0; }
   flex-direction: column;
 }
 .experience { gap: 4px; }
+.jobs { display: contents; }
 .experience .section-title { margin-bottom: 12px; }
 .job {
   padding: 16px 0;

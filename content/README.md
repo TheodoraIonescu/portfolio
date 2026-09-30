@@ -4,7 +4,7 @@ All text on the website lives in the files in this folder. Each page has its own
 
 - `home.md` is the home page.
 - `projects/*.md` are the project pages. Each file also holds the title, category and short summary shown on that project's card on the home page.
-- `projects/template.md` is an example to copy when you add a new project.
+- `projects/template.md` is an example to copy when you add a new project. All project pages share one layout. Parts of the page that have no text in the file, for example a video or a photo gallery, are not shown.
 
 You can open these files in any text editor. [Typora](https://typora.io) or [Obsidian](https://obsidian.md) show them like a Word document.
 
@@ -16,6 +16,8 @@ You can open these files in any text editor. [Typora](https://typora.io) or [Obs
 
 Lines between the `---` lines that start with `#` are notes for you. The website ignores them.
 
+Some lines point to pictures, videos or documents, for example `thumbnail: images/thumbnails/dll-thumbnail.jpg`. The path starts from the main website folder.
+
 ## Formatting
 
 | You type                          | You get                  |
@@ -25,6 +27,7 @@ Lines between the `---` lines that start with `#` are notes for you. The website
 | `[link text](https://example.com)`| a link                   |
 | a line starting with `- `         | a bullet point           |
 | an empty line                     | a new paragraph          |
+| `![description](images/photo.jpg)`| a picture (in a gallery) |
 
 ## Lists of cards
 

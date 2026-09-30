@@ -13,6 +13,13 @@ timeline: Project Development Phase
 context: University Documentary Project
 deliverable_heading: The Final Deliverable
 button: View Marketing Plan
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/ha-thumbnail.jpg
+thumbnail_width: 800
+video: documents/home_advantage.mp4
+video_poster: images/thumbnails/ha-thumbnail.jpg
+button_link: documents/ha-marketing-plan.pdf
 ---
 
 ## Overview

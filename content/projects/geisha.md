@@ -8,6 +8,10 @@ summary: Instagram and TikTok, planned, posted and measured for a Breda lounge.
 page_title: Geisha Lounge Breda | Theodora's Portfolio
 title: Geisha Lounge Breda – Social Media & Podcast Management
 deliverable_heading: Deliverables
+
+# Pictures, videos and links (paths start from the website's main folder)
+style: geisha
+tiktok: https://www.tiktok.com/@geisha_lounge/video/7481779403677125910, https://www.tiktok.com/@geisha_lounge/video/7480293173101595926, https://www.tiktok.com/@geisha_lounge/video/7482886643246976278
 ---
 
 ## Overview

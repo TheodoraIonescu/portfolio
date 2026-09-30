@@ -12,6 +12,11 @@ tools: Video Production, Team Coordination, Casting, Script Oversight
 timeline: Full Production Cycle
 context: University Film Project
 deliverable_heading: The Final Deliverable
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/echoes-thumbnail.jpg
+thumbnail_width: 450
+video: documents/echoes_of_redemption.mp4
 ---
 
 ## Overview

@@ -12,8 +12,10 @@ tools: Event Marketing, Logistics, Volunteer Management, Team Coordination
 timeline: Project Phase: Staff Events
 context: University Production House Project
 deliverable_heading: Event Highlights
-event_1: Event 1: Thanksgiving Gathering
-event_2: Event 2: New Year’s Drinks
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/evntprod-thumbnail.jpg
+thumbnail_width: 420
 ---
 
 ## Overview
@@ -29,6 +31,26 @@ Developed and executed marketing strategies to promote the events, ensuring visi
 ### Volunteer Coordination & Logistics
 
 Managed volunteers and collaborated on event concepts, decorations, and floor plans to ensure smooth execution.
+
+## Gallery
+
+### Event 1: Thanksgiving Gathering
+
+![Thanksgiving event image 1](images/event_images/image-7.jpg)
+![Thanksgiving event image 2](images/event_images/image-8.jpg)
+![Thanksgiving event image 3](images/event_images/image-9.jpg)
+![Thanksgiving event image 4](images/event_images/image-10.jpg)
+![Thanksgiving event image 5](images/event_images/image-11.jpg)
+![Thanksgiving event image 6](images/event_images/image-12.jpg)
+
+### Event 2: New Year’s Drinks
+
+![New Year’s event image 1](images/event_images/image-1.jpg)
+![New Year’s event image 2](images/event_images/image-2.jpg)
+![New Year’s event image 3](images/event_images/image-3.jpg)
+![New Year’s event image 4](images/event_images/image-4.jpg)
+![New Year’s event image 5](images/event_images/image-5.jpg)
+![New Year’s event image 6](images/event_images/image-6.jpg)
 
 ## What I Learned
 

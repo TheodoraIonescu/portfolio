@@ -13,6 +13,12 @@ timeline: 4 Weeks (Marketing & Planning Phase)
 context: Tattoo Design Snowy – Boutique Tattoo Shop, Breda
 deliverable_heading: The Final Deliverable
 button: View Marketing Plan & Content Strategies
+
+# Pictures, videos and links (paths start from the website's main folder)
+style: snowy
+thumbnail: images/thumbnails/snowy-thumbnail.png
+tiktok: https://www.tiktok.com/@noelle_frijters/video/7494986141003713814
+button_link: https://drive.google.com/drive/u/1/folders/1o9RU28RSvYSkRC9i_eWSr7lcacC6AI4U
 ---
 
 ## Overview

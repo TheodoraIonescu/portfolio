@@ -11,6 +11,9 @@ role: Marketing & Communications Intern, then Product Management Intern
 tools: Content Creation, Product Documentation, PowerPoint, Trello, Viva Engage, LinkedIn, Corporate Communications
 timeline: 47 Weeks
 context: DLL (Internship)
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/dll-thumbnail.jpg
 ---
 
 ## Overview

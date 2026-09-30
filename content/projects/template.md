@@ -1,4 +1,8 @@
 ---
+# Copy this file to add a new project. The file name (without .md) is the
+# page address: content/projects/my-project.md opens at project.html?p=my-project
+# Leave out any line you don't need: that part of the page is then hidden.
+
 # Home page card
 card_title: [Short project name]
 # Use one of: Marketing, Social media, Film, Events, Editorial
@@ -12,8 +16,22 @@ role: [e.g., Lead UX Designer, Full-Stack Developer, Filmmaker]
 tools: [e.g., React, Figma, Python, Adobe Premiere, CSS, SQL]
 timeline: [e.g., 8 Weeks (Jan-Mar 2024), Ongoing]
 context: [e.g., Personal Project, XYZ Startup, University Course]
+# The deliverable section is only shown when it has a heading
 deliverable_heading: The Final Deliverable
 button: View Live Project / Download PDF
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/[image].jpg
+# Optional: maximum width of the picture in pixels
+thumbnail_width: 600
+video: documents/[video].mp4
+video_poster: images/thumbnails/[image].jpg
+pdf_viewer: documents/[magazine].pdf
+# One or more TikTok video links, separated by commas
+tiktok: https://www.tiktok.com/@[account]/video/[number]
+button_link: documents/[file].pdf
+# Optional page theme from the css folder, e.g. geisha
+style:
 ---
 
 ## Overview
@@ -32,7 +50,14 @@ Description of a second major contribution. Use metrics or clear outcomes where 
 
 ## Deliverable
 
-**Integrate, don't isolate:** This is the main showcase area. The content here should change based on the project type (e.g., embedded video, live iframe, high-res image gallery).
+[One or two sentences that introduce the deliverable.]
+
+## Gallery
+
+### [Gallery heading]
+
+![Description of the picture](images/[picture].jpg)
+![Description of the picture](images/[picture].jpg)
 
 ## What I Learned
 

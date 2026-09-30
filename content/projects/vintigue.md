@@ -13,6 +13,12 @@ timeline: 15 Weeks
 context: University Production House Project
 deliverable_heading: The Final Deliverable
 button: View Full PDF
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/vintigue-thumbnail.jpg
+thumbnail_width: 600
+pdf_viewer: documents/vintigue_split.pdf
+button_link: documents/vintigue_split.pdf
 ---
 
 ## Overview

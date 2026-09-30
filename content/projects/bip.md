@@ -11,8 +11,9 @@ role: Project Lead & Marketing Strategist
 tools: Marketing Strategy, Cross-Cultural Communication, Leadership, Research, Strategic Thinking
 timeline: 4 Weeks
 context: Yanmar (Yeșar University BIP)
-# The deliverable section is hidden on the page for now
-deliverable_heading: The Final Deliverable
+
+# Pictures, videos and links (paths start from the website's main folder)
+thumbnail: images/thumbnails/bip-thumbnail.jpg
 ---
 
 ## Overview
@@ -28,10 +29,6 @@ Worked closely within an international team to conduct the initial online resear
 ### In-Person Strategy Development
 
 Traveled to Turkey for the in-person phase, where I stepped up to lead the project due to team difficulties. I guided my team in developing the final marketing campaign strategy to boost sales and brand recognition.
-
-## Deliverable
-
-The final deliverable for this project was a comprehensive marketing campaign proposal and presentation delivered directly to the client, Yanmar, and university supervisors.
 
 ## What I Learned
 

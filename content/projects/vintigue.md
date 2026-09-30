@@ -16,9 +16,12 @@ button: View Full PDF
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/vintigue-thumbnail.jpg
-thumbnail_width: 600
 pdf_viewer: documents/vintigue_split.pdf
 button_link: documents/vintigue_split.pdf
+# Flip-book pages made from the PDF with scripts/magazine.sh
+magazine: images/magazines/vintigue
+# Accent colour for this page and its card
+accent: "#ff9966"
 ---
 
 ## Overview

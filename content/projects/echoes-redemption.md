@@ -15,8 +15,12 @@ deliverable_heading: The Final Deliverable
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/echoes-thumbnail.jpg
-thumbnail_width: 450
 video: documents/echoes_of_redemption.mp4
+video_poster: images/posters/echoes.jpg
+# Short muted clip that plays on the home page card
+preview: documents/previews/echoes.mp4
+# Accent colour for this page and its card
+accent: "#ff4040"
 ---
 
 ## Overview

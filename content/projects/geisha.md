@@ -12,6 +12,8 @@ deliverable_heading: Deliverables
 # Pictures, videos and links (paths start from the website's main folder)
 style: geisha
 tiktok: https://www.tiktok.com/@geisha_lounge/video/7481779403677125910, https://www.tiktok.com/@geisha_lounge/video/7480293173101595926, https://www.tiktok.com/@geisha_lounge/video/7482886643246976278
+# Accent colour for this page and its card
+accent: "#ff4d6d"
 ---
 
 ## Overview

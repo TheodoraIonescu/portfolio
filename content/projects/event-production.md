@@ -15,7 +15,8 @@ deliverable_heading: Event Highlights
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/evntprod-thumbnail.jpg
-thumbnail_width: 420
+# Accent colour for this page and its card
+accent: "#ffc94d"
 ---
 
 ## Overview

@@ -14,6 +14,8 @@ context: DLL (Internship)
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/dll-thumbnail.jpg
+# Accent colour for this page and its card
+accent: "#4d9dff"
 ---
 
 ## Overview

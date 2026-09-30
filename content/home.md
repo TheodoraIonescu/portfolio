@@ -5,10 +5,15 @@ description: Theodora Ionescu, Creative Business student with a feel for marketi
 # Top of the page
 name: Theodora Ionescu.
 tagline: Creative business student with a feel for marketing, social media and production.
+# Shown on the photo card and next to the clock
+role: Creative Business student
+location: Breda, NL
 
 # Section titles. The second part is shown in grey.
 work_title: The work.
 work_subtitle: Pick a discipline.
+formats_title: Across formats.
+formats_subtitle: Phone, page and screen.
 strengths_title: Strengths.
 strengths_subtitle: How I work.
 experience_title: Experience.

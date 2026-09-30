@@ -14,6 +14,8 @@ context: Yanmar (Yeșar University BIP)
 
 # Pictures, videos and links (paths start from the website's main folder)
 thumbnail: images/thumbnails/bip-thumbnail.jpg
+# Accent colour for this page and its card
+accent: "#ff9f43"
 ---
 
 ## Overview

@@ -1,22 +1,19 @@
-.project-header, .contributions, .deliverable, .reflection {
-    background: rgba(255,255,255,0.85);
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+/* Geisha Lounge theme ("style: geisha"): the lounge glows through the page,
+   like neon through smoke. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  /* Pre-blurred and darkened copy of the lounge photo (a CSS blur this large is slow). */
+  background: url("../images/themes/geisha-glow.jpg") center / cover;
+  opacity: .85;
 }
-.social-icon { width: 40px; height: 40px; border-radius: 8px; }
-.tiktok-container iframe { border-radius: 8px; margin-bottom: 1rem; }
-.tiktok-container {
-width: 100%;
-display: flex;
-flex-wrap: wrap;
-gap: 20px;
-justify-content: center;
-flex-direction: row;
-margin-top: 40px;
-}
-body {
-    background: url('../images//thumbnails/geisha-thumbnail.jpg') no-repeat center center fixed;
-    background-size: cover;
+.card { background: linear-gradient(160deg, #1b1015 0%, #0d090c 70%); }
+.p-hero-shade {
+  background:
+    linear-gradient(0deg, rgb(12 4 8 / .92) 0%, rgb(12 4 8 / .5) 36%, transparent 66%),
+    linear-gradient(90deg, rgb(12 4 8 / .55) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, rgb(0 0 0 / .1) 0 1px, transparent 1px 3px);
 }

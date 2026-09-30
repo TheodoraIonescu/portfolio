@@ -19,8 +19,15 @@
 //                                  frontmatter value, {key:digits} keeps only digits and +.
 //                                  An attribute whose keys are missing is not set.
 //   data-md-tiktok="key"           Embeds the comma-separated TikTok video links in key.
+//                                  With a child <template>, it is repeated once per link
+//                                  instead, and its first element gets data-url and
+//                                  data-video-id.
 //   data-md-script="url url"       Loads these scripts in order after rendering, if the
 //                                  element is still on the page.
+//
+// When everything is rendered, <html> gets the class "is-rendered" and the document
+// fires "md:rendered". window.mdContent(src) returns the parsed { meta, sections } of a
+// content file, from the same cache.
 //
 // Needs marked.js loaded first, and an HTTP server (fetch does not work on file://).
 (() => {
@@ -152,11 +159,23 @@
         }
 
         for (const el of own(scope, '[data-md-tiktok]')) {
+            const tpl = el.querySelector(':scope > template');
             for (const url of (meta[el.dataset.mdTiktok] ?? '').split(',').map(s => s.trim()).filter(Boolean)) {
+                const id = url.match(/video\/(\d+)/)?.[1] ?? '';
+                if (tpl) {
+                    const node = tpl.content.cloneNode(true);
+                    const first = node.firstElementChild;
+                    if (first) {
+                        first.dataset.url = url;
+                        first.dataset.videoId = id;
+                    }
+                    el.appendChild(node);
+                    continue;
+                }
                 const quote = document.createElement('blockquote');
                 quote.className = 'tiktok-embed';
                 quote.cite = url;
-                quote.dataset.videoId = url.match(/video\/(\d+)/)?.[1] ?? '';
+                quote.dataset.videoId = id;
                 quote.style.cssText = 'max-width: 325px; min-width: 325px;';
                 quote.appendChild(document.createElement('section'));
                 el.appendChild(quote);
@@ -200,6 +219,7 @@
         }));
         await stylesheetsLoaded();
         root.style.visibility = '';
+        root.classList.add('is-rendered');
         document.dispatchEvent(new Event('md:rendered'));
 
         for (const el of document.querySelectorAll('[data-md-script]')) {
@@ -210,6 +230,8 @@
             }
         }
     }
+
+    window.mdContent = load;
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
     else run();

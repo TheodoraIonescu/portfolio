@@ -62,7 +62,6 @@
             if (next === active) return;
             phones[active].stop();
             active = next;
-            S.sound.play('click');
             layout();
         }
 

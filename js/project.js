@@ -128,7 +128,6 @@
             }
             if (byUser) {
                 history.replaceState(null, '', `${location.pathname}${location.search}#${panel.id}`);
-                S.sound.play('click');
             }
             // Components inside measure themselves once the panel is visible.
             requestAnimationFrame(() => {

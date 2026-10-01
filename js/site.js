@@ -1,5 +1,5 @@
 // Shared engine for every page: one animation loop, smooth scroll, split text and
-// reveals, cursor, magnetic buttons, page transitions, sound, command menu and clocks.
+// reveals, cursor, magnetic buttons, page transitions, command menu and clocks.
 // Page scripts reach it through window.Site. Load after template.js.
 //
 // Markup hooks:
@@ -14,7 +14,7 @@
 //   data-copy="text"           Click copies text and shows a toast.
 //   data-top                   Click scrolls to the top.
 //   data-palette-open          Click opens the command menu (also Ctrl/Cmd+K).
-//   data-sound                 Click toggles interface sounds.
+//   data-icon="down"           On a .btn: its icon slides downward on hover (default: up-right).
 (() => {
     const root = document.documentElement;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -248,6 +248,16 @@
         el.append(a, b);
     }
 
+    // Moves a button's trailing icon into a chip, with a copy that slides in on hover.
+    function buttonIcon(svg) {
+        const chip = document.createElement('span');
+        chip.className = 'btn-icon';
+        chip.setAttribute('aria-hidden', 'true');
+        if (svg.parentElement.dataset.icon) chip.dataset.dir = svg.parentElement.dataset.icon;
+        svg.replaceWith(chip);
+        chip.append(svg, svg.cloneNode(true));
+    }
+
     const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+=/<>[]{}';
     function scramble(el, text, duration = 650) {
         text ??= el.dataset.text ?? el.textContent;
@@ -412,102 +422,6 @@
         });
     }
 
-    // ---------- Sound ----------
-
-    const sound = (() => {
-        let ctx = null, out = null, noiseBuf = null, unlocked = false, lastHover = 0;
-        let on = store.get('sound') === 'on';
-
-        function init() {
-            if (!unlocked) return false;
-            if (!ctx) {
-                const AC = window.AudioContext || window.webkitAudioContext;
-                if (!AC) return false;
-                ctx = new AC();
-                out = ctx.createGain();
-                out.gain.value = .7;
-                out.connect(ctx.createDynamicsCompressor()).connect(ctx.destination);
-            }
-            if (ctx.state === 'suspended') ctx.resume();
-            return true;
-        }
-
-        function tone(freq, dur, { type = 'sine', vol = .04, to = 0, at = 0 } = {}) {
-            const t = ctx.currentTime + at;
-            const o = ctx.createOscillator();
-            const g = ctx.createGain();
-            o.type = type;
-            o.frequency.setValueAtTime(freq, t);
-            if (to) o.frequency.exponentialRampToValueAtTime(to, t + dur);
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(vol, t + .006);
-            g.gain.exponentialRampToValueAtTime(.0001, t + dur);
-            o.connect(g).connect(out);
-            o.start(t);
-            o.stop(t + dur + .03);
-        }
-
-        function noise(dur, { from = 800, to = 3000, vol = .05, q = 1 } = {}) {
-            if (!noiseBuf) {
-                noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
-                const d = noiseBuf.getChannelData(0);
-                for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-            }
-            const t = ctx.currentTime;
-            const src = ctx.createBufferSource();
-            const f = ctx.createBiquadFilter();
-            const g = ctx.createGain();
-            src.buffer = noiseBuf;
-            f.type = 'bandpass';
-            f.Q.value = q;
-            f.frequency.setValueAtTime(from, t);
-            f.frequency.exponentialRampToValueAtTime(to, t + dur);
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(vol, t + dur * .3);
-            g.gain.exponentialRampToValueAtTime(.0001, t + dur);
-            src.connect(f).connect(g).connect(out);
-            src.start(t);
-            src.stop(t + dur);
-        }
-
-        const fx = {
-            hover: () => tone(2600, .04, { vol: .01, to: 1900 }),
-            click: () => tone(900, .09, { type: 'triangle', vol: .035, to: 420 }),
-            whoosh: () => noise(.75, { from: 260, to: 4200, vol: .07, q: .6 }),
-            flip: () => noise(.3, { from: 3600, to: 700, vol: .09, q: .45 }),
-            on: () => [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, .4, { vol: .025, at: i * .07 })),
-        };
-
-        const unlock = () => {
-            unlocked = true;
-            if (on) init();
-        };
-        addEventListener('pointerdown', unlock, { once: true, capture: true });
-        addEventListener('keydown', unlock, { once: true, capture: true });
-
-        function play(name) {
-            if (!on || !init()) return;
-            if (name === 'hover') {
-                const now = performance.now();
-                if (now - lastHover < 70) return;
-                lastHover = now;
-            }
-            fx[name]?.();
-        }
-
-        function set(value) {
-            on = value;
-            store.set('sound', on ? 'on' : 'off');
-            document.querySelectorAll('[data-sound]').forEach(b => b.setAttribute('aria-pressed', String(on)));
-            if (on) {
-                unlocked = true;
-                if (init()) fx.on();
-            }
-        }
-
-        return { play, set, toggle: () => set(!on), get on() { return on; } };
-    })();
-
     // ---------- Toast & copy ----------
 
     let toastEl, toastTimer;
@@ -588,7 +502,6 @@
         curtainTitle.textContent = label;
         root.classList.remove('pt-in', 'pt-reveal');
         root.classList.add('pt-out');
-        sound.play('whoosh');
         setTimeout(() => { location.href = url.href; }, 640);
     }
 
@@ -708,7 +621,6 @@
         arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
         mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
         file: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 12v6M9 15l3 3 3-3"/></svg>',
-        sound: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
         up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
         search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
     };
@@ -790,7 +702,6 @@
                 actions.push({ group: 'Actions', title: 'Copy email address', sub: meta.email, icon: 'mail', run: () => copy(meta.email, 'Email address copied') });
             }
             actions.push({ group: 'Actions', title: 'Download résumé', sub: 'PDF', icon: 'file', href: 'documents/cv.pdf', external: true });
-            actions.push({ group: 'Actions', title: 'Toggle interface sound', icon: 'sound', run: () => sound.toggle() });
             return [...list, ...sections, ...actions];
         }
 
@@ -845,7 +756,6 @@
 
         function run(item) {
             close(false);
-            sound.play('click');
             if (item.run) item.run();
             else if (item.external) window.open(item.href, '_blank', 'noopener');
             else go(item.href, item.group === 'Projects' ? item.title : '');
@@ -953,6 +863,7 @@
     function decorate(scope = document) {
         scope.querySelectorAll('[data-split]').forEach(split);
         scope.querySelectorAll('[data-roll]').forEach(roll);
+        scope.querySelectorAll('.btn > svg').forEach(buttonIcon);
         scope.querySelectorAll('[data-magnetic]').forEach(magnetic);
         scope.querySelectorAll('[data-scramble]').forEach(el => {
             if (el.dataset.scrambleDone) return;
@@ -965,24 +876,21 @@
     }
 
     document.addEventListener('click', e => {
-        const t = e.target.closest('[data-copy], [data-top], [data-palette-open], [data-sound]');
+        const t = e.target.closest('[data-copy], [data-top], [data-palette-open]');
         if (!t) return;
         if (t.matches('[data-copy]')) copy(t.dataset.copy, t.dataset.copyMessage || 'Copied to clipboard');
         if (t.matches('[data-top]')) scrollToTarget(0);
         if (t.matches('[data-palette-open]')) palette.open();
-        if (t.matches('[data-sound]')) sound.toggle();
     });
 
-    // Interface sounds for hovers and presses.
-    let lastHoverTarget = null;
-    document.addEventListener('pointerover', e => {
-        const t = e.target.closest?.('a, button, [role="option"]');
-        if (t && t !== lastHoverTarget) sound.play('hover');
-        lastHoverTarget = t;
-    });
-    document.addEventListener('pointerdown', e => {
-        if (e.target.closest?.('a, button')) sound.play('click');
-    });
+    // Pointer position inside buttons, for their glow.
+    document.addEventListener('pointermove', e => {
+        const b = e.target.closest?.('.btn, .icon-btn');
+        if (!b) return;
+        const r = b.getBoundingClientRect();
+        b.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        b.style.setProperty('--my', `${e.clientY - r.top}px`);
+    }, { passive: true });
 
     function initLenis() {
         if (reduced || !fine || !window.Lenis) return;
@@ -995,7 +903,6 @@
         cursor();
         nav();
         clocks();
-        document.querySelectorAll('[data-sound]').forEach(b => b.setAttribute('aria-pressed', String(sound.on)));
         document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
         if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
             document.querySelectorAll('[data-mod]').forEach(el => { el.textContent = 'Ctrl'; });
@@ -1026,7 +933,7 @@
         reduced, fine, clamp, lerp, damp, wait, nextFrame, h, store,
         loop, unloop, scene, visible, measureAll, scroll,
         ready, setup, entered, live, split, observe, decorate, scramble,
-        magnetic, tilt, sound, toast, copy, go, scrollTo: scrollToTarget,
+        magnetic, tilt, toast, copy, go, scrollTo: scrollToTarget,
         projects, palette,
         get lenis() { return lenis; },
     };

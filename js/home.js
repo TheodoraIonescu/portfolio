@@ -88,7 +88,6 @@
             digits.forEach((d, i) => { d.textContent = '100'[i]; });
             S.store.set('booted', '1', true);
             el.classList.add('is-done');
-            S.sound.play('whoosh');
             setTimeout(() => {
                 root.classList.remove('boot-on');
                 S.lenis?.start();
@@ -576,17 +575,70 @@
 
     // ---------- Strengths: cards stack and sink back ----------
 
+    // Picture for each strength, picked from words in its title. Cards whose title
+    // matches none get the pictures that are left, in this order.
+    const VISUALS = [
+        ['communication', /communicat|talk|speak|people|network|present|listen/i],
+        ['planning', /plan|organi[sz]|time|schedul|deadline|priorit/i],
+        ['social', /social|media|content|instagram|tiktok|youtube|marketing|engag/i],
+        ['adapt', /adapt|flexib|learn|grow|change|curio/i],
+    ];
+
+    function pickVisuals(cards) {
+        const kinds = cards.map(c => {
+            const title = $('.stack-title', c).textContent;
+            return VISUALS.find(([, re]) => re.test(title))?.[0];
+        });
+        const spare = VISUALS.map(([k]) => k).filter(k => !kinds.includes(k));
+        return kinds.map((k, i) => k || spare.shift() || VISUALS[i % VISUALS.length][0]);
+    }
+
+    // Plays a picture step by step while its card is on screen, holds the last step,
+    // then starts over. With reduced motion it shows the last step only.
+    function sequence(viz, card) {
+        const steps = +viz.dataset.steps || 4;
+        const items = $$('[data-step], [data-only]', viz);
+        const counts = $$('[data-count]', viz);
+        const show = s => {
+            viz.dataset.s = s;
+            viz.style.setProperty('--p', (s / steps).toFixed(3));
+            for (const el of items) {
+                el.classList.toggle('on', 'only' in el.dataset ? +el.dataset.only === s : s >= +el.dataset.step);
+            }
+            for (const el of counts) el.textContent = pad(s);
+        };
+        if (S.reduced) {
+            show(steps);
+            return;
+        }
+        let n = 0, timer = 0;
+        show(0);
+        S.visible(card, v => {
+            card.classList.toggle('is-paused', !v);
+            clearInterval(timer);
+            if (v) {
+                timer = setInterval(() => {
+                    n = n >= steps + 2 ? 0 : n + 1;
+                    show(Math.min(n, steps));
+                }, 1300);
+            }
+        }, '-15% 0px');
+    }
+
     function strengths() {
         const cards = $$('.stack-card');
         if (!cards.length) return;
+        const kinds = pickVisuals(cards);
         cards.forEach((c, i) => {
             c.style.setProperty('--i', i);
             $('.stack-no', c).textContent = `${pad(i + 1)} / ${pad(cards.length)}`;
             $('.stack-text', c).dataset.index = pad(i + 1);
-            S.visible(c, v => c.classList.toggle('is-paused', !v));
-        });
-        $$('.v-grid').forEach(g => {
-            g.innerHTML = Array.from({ length: 35 }, (_, n) => `<i style="--n:${n}"></i>`).join('');
+            const vis = $('.stack-visual', c);
+            const tpl = document.getElementById(`v-${kinds[i]}`);
+            if (!tpl) return;
+            vis.classList.add(`v-${kinds[i]}`);
+            vis.append(tpl.content.cloneNode(true));
+            sequence($('.viz', vis), c);
         });
         if (S.reduced) return;
 

@@ -33,6 +33,17 @@ Some lines point to pictures, videos or documents, for example `thumbnail: image
 
 Some sections contain several cards, for example "My Contributions" or "Strengths". Each card starts with a `###` heading. The heading is the card title, and the text under it is the card text. To add a card, add a new `###` heading with text under it. To remove a card, delete its heading and its text.
 
+Each card under "## Strengths" on the home page gets a moving picture. The website picks it from words in the card title:
+
+| Title contains, for example | Picture |
+| --- | --- |
+| communication, people, presenting | a team chat |
+| planning, organising, time | a project timeline |
+| social, media, content, marketing | an engagement graph |
+| adaptability, learning, growth | a shape that keeps changing |
+
+A card whose title matches none of these gets a picture that no other card uses.
+
 ## How a project page is organised
 
 A project page shows the role, a few figures and a list of tabs next to the cover picture. Below it, one tab is open at a time:

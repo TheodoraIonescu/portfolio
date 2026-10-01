@@ -410,7 +410,6 @@
                     const f = flip;
                     f.peek = false;
                     f.curl = 40;
-                    S.sound.play('flip');
                     if (await animate(f, endOf(f), 820)) settle(true);
                     return;
                 }
@@ -422,7 +421,6 @@
             }
             if (to === pos) return;
             const f = begin(to);
-            S.sound.play('flip');
             if (S.reduced) {
                 f.t = endOf(f);
                 render();
@@ -467,7 +465,6 @@
                     begin(pos + press.dir);
                 }
                 flip.curl = 55;
-                S.sound.play('flip');
             }
             if (!flip) return;
             const { x0, spine, dir } = press;

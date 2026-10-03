@@ -350,6 +350,38 @@ html.is-live .holo { opacity: 1; transform: none; }
   background: var(--accent);
   transition: transform .6s var(--ease), width .6s var(--ease), height .6s var(--ease);
 }
+/* Dropdown version of the filters, for phones. The select covers the whole pill. */
+.filter-pick {
+  position: relative;
+  display: none;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: border-color .3s;
+}
+.filter-pick:focus-within { border-color: var(--accent); }
+.filter-pick .mono { position: absolute; left: 20px; color: var(--muted); pointer-events: none; }
+.filter-pick select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0 48px 0 76px;
+  border: 0;
+  border-radius: inherit;
+  outline: 0;
+  background: none;
+  color: var(--ink);
+  font: 500 16px/1 var(--f-body);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.filter-pick option { background: var(--bg-raise); color: var(--ink); }
+.filter-pick svg { position: absolute; right: 18px; width: 18px; height: 18px; color: var(--accent); pointer-events: none; }
 .views { display: flex; gap: 2px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
 .views button { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); transition: background-color .3s, color .3s; }
 .views button:hover { color: var(--ink); }
@@ -1143,19 +1175,42 @@ html.is-live .holo { opacity: 1; transform: none; }
   .xp-side { position: relative; top: 0; }
 }
 
+/* Touch screens: the card in the middle of the screen gets the hover look (home.js). */
+@media (hover: none) {
+  .project { --mx: 50%; --my: 0%; }
+  .project::before, .project::after { transition: opacity .6s var(--ease); }
+  .project.is-focus { box-shadow: 0 50px 90px -50px color-mix(in srgb, var(--accent) 55%, transparent); border-color: var(--line-2); }
+  .project.is-focus::before, .project.is-focus::after { opacity: 1; }
+  .project.is-focus .project-media img, .project.is-focus .project-media video { transform: translateY(var(--iy, 0%)) scale(1.2); }
+  .project.is-focus .project-media img[data-fit="contain"] { transform: translateY(var(--iy, 0%)) scale(1.06); }
+  .project.is-focus .project-more { color: var(--accent); }
+  .project.is-focus .project-more svg { transform: translateX(5px); }
+}
+
 @media (max-width: 760px) {
   .hero { height: auto; min-height: 100svh; }
-  .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 22px; padding: 14px 0 20px; }
-  .holo { order: -1; justify-self: center; margin: 0; height: auto; width: min(56vw, 240px); }
-  .hero-lines { max-width: none; }
-  .hero-index, .hero-cta { display: none !important; }
+  .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 26px; padding: 10px 0 22px; }
+  .holo { order: -1; justify-self: center; margin: 0; height: auto; width: min(54vw, 230px); }
+  .hero-lines { max-width: none; gap: 18px; }
+  .hero-tagline { font-size: clamp(1.4rem, 6.4vw, 1.9rem); }
   .hero-name { font-size: clamp(2.4rem, 13.4vw, 5rem); }
   .hero-top .hud:first-child { display: none; }
   .hero-top { justify-content: flex-end; }
-  .hero-coords { display: none; }
+  .hero-foot { display: none; }
+  .holo-head, .holo-meta .mono { font-size: 10.5px; }
+
+  /* A dropdown replaces the row of filters, next to the layout switch. */
+  .work-head { gap: 24px; }
+  .work-tools { flex-wrap: nowrap; width: 100%; }
+  .filters { display: none; }
+  .filter-pick { display: flex; }
+  .views { flex: none; }
+  .views button { width: 40px; height: 40px; }
 
   .work-grid { grid-template-columns: 1fr; }
-  .project-media { aspect-ratio: 4 / 3.6; }
+  .project-media { aspect-ratio: 4 / 3.4; }
+  .project-body { padding: 18px 20px 20px; }
+  .project-more { min-height: 32px; }
   [data-layout="index"] .project-body { grid-template-columns: 34px minmax(0, 1fr) 24px; grid-template-areas: "no title more" ". cat ."; gap: 6px 14px; }
   [data-layout="index"] .project-cat { justify-self: start; }
 
@@ -1165,11 +1220,32 @@ html.is-live .holo { opacity: 1; transform: none; }
 
   .stack-card { height: auto; min-height: 70vh; }
   .stack-inner { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-  .stack-visual { order: -1; height: min(340px, 86vw); border-left: 0; border-bottom: 1px solid var(--line); }
-  .viz { --w: min(92cqw, 104cqh); }
+  .stack-no { font-size: 12px; }
 
-  .globe { right: -45vw; top: 36%; width: 130vw; opacity: .7; }
-  .contact::before { background: linear-gradient(0deg, var(--bg) 25%, rgb(6 6 8 / .5) 70%, transparent); }
+  /* The pictures fill the panel and use a larger type scale, with a floor on the
+     smallest labels, so nothing in them drops below about 10px. */
+  .stack-visual { order: -1; height: auto; aspect-ratio: 1 / .98; border-left: 0; border-bottom: 1px solid var(--line); }
+  .viz { --w: calc(100cqw - 20px); aspect-ratio: auto; height: calc(100cqh - 20px); font-size: calc(var(--w) / 22); gap: .9em; padding: 1.1em; }
+  .viz .mono { font-size: max(.7em, 10.5px); }
+  .chat-faces i { font-size: max(.62em, 10px); }
+  .chat-name small, .msg.me small { font-size: max(.6em, 10px); }
+  .msg > span { font-size: .84em; }
+  .plan-label { font-size: .8em; }
+  .plan-weeks span { font-size: max(.9em, 10px); }
+  .plan-now span { font-size: max(.52em, 10px) !important; }
+  .soc-app { font-size: .76em; }
+
+  .globe { right: -40vw; top: -4%; width: 125vw; translate: none; opacity: .65; }
+  .xp { padding: 80px 0 24px; }
+  .contact { min-height: auto; padding: 120px 0 48px; }
+  .contact::before { background: linear-gradient(0deg, var(--bg) 35%, rgb(6 6 8 / .45) 75%, transparent); }
+  .contact-phone { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
+/* Short phones: a smaller card and no figures, so the name still fits on the first screen. */
+@media (max-width: 760px) and (max-height: 740px) {
+  .holo { width: min(46vw, 196px); }
+  .hero-index { display: none; }
 }
 
 @media (max-width: 520px) {

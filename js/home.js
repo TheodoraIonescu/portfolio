@@ -34,7 +34,7 @@
         const el = S.h(`<div class="boot" aria-hidden="true">
             <div class="boot-log mono"></div>
             <div class="boot-center"><div class="boot-count"><span>0</span><span>0</span><span>0</span></div><div class="boot-name mono"></div></div>
-            <div class="boot-foot mono"><span>Portfolio OS</span><span class="boot-bar"><i></i></span><span class="boot-skip">Click to skip</span></div>
+            <div class="boot-foot mono"><span>Portfolio OS</span><span class="boot-bar"><i></i></span><span class="boot-skip">${S.fine ? 'Click' : 'Tap'} to skip</span></div>
         </div>`);
         document.body.append(el);
         S.lenis?.stop();
@@ -121,7 +121,22 @@
         code.setAttribute('viewBox', '0 0 100 26');
         code.innerHTML = `<g fill="currentColor">${bars}</g>`;
 
-        S.tilt($('.holo-card'), { scope: heroEl, max: 13, lambda: 5 });
+        const holoCard = $('.holo-card');
+        S.tilt(holoCard, { scope: heroEl, max: 13, lambda: 5 });
+        // Touch screens have no pointer to tilt the card, so it sways slowly and the foil shifts.
+        if (!S.fine && !S.reduced) {
+            let on = true;
+            S.visible(holoCard, v => { on = v; }, '0px');
+            holoCard.style.setProperty('--hover', '.7');
+            S.loop((dt, now) => {
+                if (!on) return;
+                const t = now / 1000;
+                holoCard.style.setProperty('--rx', `${(Math.sin(t * .6) * 7).toFixed(2)}deg`);
+                holoCard.style.setProperty('--ry', `${(Math.sin(t * .45 + 1) * 11).toFixed(2)}deg`);
+                holoCard.style.setProperty('--mx', `${(50 + Math.sin(t * .45 + 1) * 40).toFixed(1)}%`);
+                holoCard.style.setProperty('--my', `${(50 - Math.sin(t * .6) * 35).toFixed(1)}%`);
+            });
+        }
 
         // Scroll away: the name sinks slower than the page, the card drifts up.
         const lines = $('.hero-lines');
@@ -225,11 +240,17 @@
             img.before(bg);
         });
 
+        // Phones get a dropdown with the same choices instead of the row of filters (CSS shows one of the two).
+        const pick = S.h(`<label class="filter-pick"><span class="mono">Show</span><select aria-label="Filter projects"></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></label>`);
+        const select = pick.querySelector('select');
         buttons.forEach(b => {
             const f = b.dataset.filter;
             const n = f === 'All' ? cards.length : cards.filter(c => c.dataset.cat === f).length;
             b.insertAdjacentHTML('beforeend', `<sup>${n}</sup>`);
+            select.add(new Option(`${f === 'All' ? 'All projects' : f} (${n})`, f));
         });
+        $('.filters').before(pick);
+        select.addEventListener('change', () => buttons.find(b => b.dataset.filter === select.value)?.click());
 
         const placePill = () => {
             const b = buttons.find(x => x.getAttribute('aria-pressed') === 'true');
@@ -245,6 +266,7 @@
         buttons.forEach(b => b.addEventListener('click', () => {
             if (b.getAttribute('aria-pressed') === 'true') return;
             buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+            select.value = b.dataset.filter;
             placePill();
             busy = busy.then(() => applyFilter(b.dataset.filter));
         }));
@@ -311,26 +333,45 @@
             S.scene(c, p => { media.style.setProperty('--iy', `${((p - .5) * -10).toFixed(2)}%`); });
         });
 
-        if (!S.fine || S.reduced) return;
-
-        cards.forEach(c => S.tilt(c, { max: 5 }));
-
-        // Short muted clip on hover, for cards that have "preview:" in their file.
-        cards.filter(c => c.dataset.preview).forEach(c => {
-            let video = null;
-            c.addEventListener('pointerenter', () => {
-                if (grid.dataset.layout !== 'grid') return;
+        // Short muted clip for cards that have "preview:" in their file.
+        const clip = c => {
+            let video = null, want = false;
+            return on => {
+                want = on && grid.dataset.layout === 'grid';
+                if (!want) {
+                    c.classList.remove('is-previewing');
+                    video?.pause();
+                    return;
+                }
                 if (!video) {
                     video = Object.assign(document.createElement('video'), { muted: true, loop: true, playsInline: true, preload: 'auto', src: c.dataset.preview });
                     video.setAttribute('aria-hidden', 'true');
                     $('.project-media', c).append(video);
                 }
-                video.play().then(() => c.classList.add('is-previewing')).catch(() => {});
+                video.play().then(() => want && c.classList.add('is-previewing')).catch(() => {});
+            };
+        };
+
+        // Touch screens have no hover: the card in the middle of the screen lights up
+        // and plays its clip instead.
+        if (!S.fine) {
+            cards.forEach(c => {
+                const play = c.dataset.preview && !S.reduced ? clip(c) : null;
+                S.visible(c, v => {
+                    c.classList.toggle('is-focus', v);
+                    play?.(v);
+                }, '-42% 0px -42% 0px');
             });
-            c.addEventListener('pointerleave', () => {
-                c.classList.remove('is-previewing');
-                video?.pause();
-            });
+            return;
+        }
+        if (S.reduced) return;
+
+        cards.forEach(c => S.tilt(c, { max: 5 }));
+
+        cards.filter(c => c.dataset.preview).forEach(c => {
+            const play = clip(c);
+            c.addEventListener('pointerenter', () => play(true));
+            c.addEventListener('pointerleave', () => play(false));
         });
 
         // A brief liquid wobble on the image when the pointer arrives.

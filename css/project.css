@@ -756,16 +756,37 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
 @media (max-width: 900px) {
   .p-top { grid-template-columns: 1fr; }
   .p-hero { order: -1; min-height: clamp(300px, 72vw, 460px); }
-  .p-tabs { display: flex; gap: 4px; overflow-x: auto; margin-top: 0; scrollbar-width: none; }
-  .p-tab { flex: none; width: auto; padding: 10px 14px; }
+  /* All tabs visible at once: four in a row, two by two on phones. */
+  .p-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; margin-top: 0; }
+  .p-tab { justify-content: center; min-height: 46px; padding: 10px 8px; background: var(--surface); }
   .p-tab svg, .p-tab::before { display: none; }
   .p-steps .p-step span { display: none; }
 }
 
+@media (pointer: coarse) {
+  .p-back { min-height: 44px; }
+  .p-step { height: 44px; min-width: 44px; justify-content: center; }
+  .p-dock button { min-height: 44px; }
+  .phone-link { padding-block: 14px; top: calc(100% + 30px); }
+}
+
 @media (max-width: 640px) {
-  .p-hero.is-portrait .p-hero-img { padding: 14px 14px 30%; object-position: 50% 0; }
+  .p-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .p-tab { gap: 8px; font-size: 14.5px; }
+  .p-tab:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  /* A tall photo fills the cover instead of shrinking into a corner. */
+  .p-hero.is-portrait .p-hero-img { object-fit: cover; object-position: 50% 22%; padding: 0; }
+  .p-hero.is-portrait .p-hero-bg { display: none; }
+  .p-hero-hud { top: 14px; right: 14px; padding: 6px 10px; border-radius: 999px; background: rgb(6 6 8 / .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .tag { font-size: 12px; }
+  .p-stats dd { font-size: 12px; }
+  .next { align-items: flex-start; }
+  .next-cat { display: none; }
+  .next-sum { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .next-go { align-self: center; width: 44px; height: 44px; }
   .p-crumbs .p-index { display: none; }
   .phones { --pw: min(58vw, 250px); }
+  .ring { --iw: min(40vw, 190px); }
   .cinema-hud { inset: 12px 14px auto; }
   .corner { width: 14px; height: 14px; }
   .p-media { padding: 10px; }

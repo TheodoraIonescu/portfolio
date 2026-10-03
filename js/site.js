@@ -593,7 +593,7 @@
         burger = bar.querySelector('.burger');
         if (!burger) return;
         menu = h(`<div class="menu" id="menu" data-lenis-prevent><nav class="menu-links" aria-label="Menu"></nav>
-            <div class="menu-foot mono"><span data-clock></span><button type="button" data-palette-open>Search ⌘K</button></div></div>`);
+            <div class="menu-foot mono"><span data-clock></span><button type="button" data-palette-open>Search${fine ? ' <span data-mod>⌘</span>K' : ''}</button></div></div>`);
         const list = menu.querySelector('.menu-links');
         const all = [...links, ...bar.querySelectorAll('.nav-cta')];
         all.forEach((a, i) => {
@@ -637,14 +637,15 @@
                     <div class="palette-search">${ICONS.search}
                         <input type="text" placeholder="Search projects, sections, actions…" autocomplete="off" spellcheck="false"
                             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list">
-                        <kbd class="mono">esc</kbd></div>
+                        <button type="button" class="palette-esc mono" aria-label="Close search">${fine ? 'esc' : 'Close'}</button></div>
                     <div class="palette-list" id="palette-list" role="listbox" aria-label="Results" data-lenis-prevent></div>
-                    <div class="palette-foot mono"><span><kbd>↑↓</kbd> Move</span><span><kbd>↵</kbd> Open</span><span><kbd>esc</kbd> Close</span></div>
+                    ${fine ? '<div class="palette-foot mono"><span><kbd>↑↓</kbd> Move</span><span><kbd>↵</kbd> Open</span><span><kbd>esc</kbd> Close</span></div>' : ''}
                 </div></div>`);
             document.body.append(el);
             input = el.querySelector('input');
             list = el.querySelector('.palette-list');
             el.querySelector('.palette-backdrop').addEventListener('click', close);
+            el.querySelector('.palette-esc').addEventListener('click', () => close());
             input.addEventListener('input', () => {
                 sel = 0;
                 render();

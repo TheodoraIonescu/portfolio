@@ -149,10 +149,13 @@
         const hash = decodeURIComponent(location.hash.slice(1));
         show(Math.max(0, panels.findIndex(p => p.id === hash)), false);
 
-        let navSeen = true, panelsSeen = false;
-        const update = () => dock.classList.toggle('is-on', !navSeen && panelsSeen && panels.length > 1);
+        // The dock steps aside at the footer so it never covers it.
+        let navSeen = true, panelsSeen = false, footSeen = false;
+        const update = () => dock.classList.toggle('is-on', !navSeen && panelsSeen && !footSeen && panels.length > 1);
         S.visible(nav, v => { navSeen = v; update(); }, '0px');
         S.visible(wrap, v => { panelsSeen = v; update(); }, '-20% 0px -20% 0px');
+        const foot = $('.footer');
+        if (foot) S.visible(foot, v => { footSeen = v; update(); }, '0px');
     }
 
     // ---------- Figures in the side card ----------
@@ -298,7 +301,7 @@
             <a class="card next" href="${esc(next.href)}" data-title="${esc(next.title)}" data-cursor="Next">
                 <span class="next-media">${next.thumb ? `<img src="${esc(next.thumb)}" alt="" loading="lazy">` : ''}</span>
                 <span class="next-text">
-                    <span class="next-label mono">Next project · <b>${pad(next.index + 1)}</b> / ${pad(total)} · ${esc(next.category)}</span>
+                    <span class="next-label mono">Next project · <b>${pad(next.index + 1)}</b> / ${pad(total)}<span class="next-cat"> · ${esc(next.category)}</span></span>
                     <span class="next-title">${esc(next.title)}</span>
                     <span class="next-sum">${esc(next.summary)}</span>
                 </span>

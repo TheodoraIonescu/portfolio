@@ -30,13 +30,14 @@
         const phones = slots.map(build);
         let active = Math.floor((phones.length - 1) / 2);
 
+        let prev, next;
         if (phones.length > 1) {
             const nav = S.h(`<div class="phones-nav">
                 <button type="button" aria-label="Previous video">${ICON.prev}</button>
                 <span class="phones-dots" aria-hidden="true">${phones.map(() => '<i></i>').join('')}</span>
                 <button type="button" aria-label="Next video">${ICON.next}</button></div>`);
             stage.after(nav);
-            const [prev, next] = nav.querySelectorAll('button');
+            [prev, next] = nav.querySelectorAll('button');
             prev.addEventListener('click', () => select(active - 1));
             next.addEventListener('click', () => select(active + 1));
         }
@@ -55,14 +56,24 @@
                 p.slot.inert = d !== 0;
             });
             stage.parentElement.querySelectorAll('.phones-dots i').forEach((dot, i) => dot.classList.toggle('is-on', i === active));
+            if (!prev) return;
+            // Disable the arrow at either end; if it had focus, hand focus to the other arrow.
+            const lost = document.activeElement;
+            prev.disabled = active === 0;
+            next.disabled = active === phones.length - 1;
+            if (lost === prev && prev.disabled) next.focus();
+            if (lost === next && next.disabled) prev.focus();
         }
 
         function select(i) {
-            const next = Math.max(0, Math.min(phones.length - 1, i));
-            if (next === active) return;
+            const to = Math.max(0, Math.min(phones.length - 1, i));
+            if (to === active) return;
+            // A phone that leaves the centre turns inert, so keep focus on the new centre phone.
+            const refocus = phones[active].slot.contains(document.activeElement);
             phones[active].stop();
-            active = next;
+            active = to;
             layout();
+            if (refocus) phones[active].slot.querySelector('.phone-play').focus({ preventScroll: true });
         }
 
         phones.forEach((p, i) => p.slot.addEventListener('click', e => {
@@ -101,7 +112,8 @@
             const dx = e.clientX - sx, dy = e.clientY - sy;
             if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) select(active + (dx < 0 ? 1 : -1));
         });
-        stage.addEventListener('keydown', e => {
+        // Arrow keys work while focus is on a phone or on the arrows below.
+        stage.parentElement.addEventListener('keydown', e => {
             if (e.key === 'ArrowLeft') select(active - 1);
             if (e.key === 'ArrowRight') select(active + 1);
         });

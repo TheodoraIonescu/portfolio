@@ -350,6 +350,38 @@ html.is-live .holo { opacity: 1; transform: none; }
   background: var(--accent);
   transition: transform .6s var(--ease), width .6s var(--ease), height .6s var(--ease);
 }
+/* Dropdown version of the filters, for phones. The select covers the whole pill. */
+.filter-pick {
+  position: relative;
+  display: none;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: border-color .3s;
+}
+.filter-pick:focus-within { border-color: var(--accent); }
+.filter-pick .mono { position: absolute; left: 20px; color: var(--muted); pointer-events: none; }
+.filter-pick select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0 48px 0 76px;
+  border: 0;
+  border-radius: inherit;
+  outline: 0;
+  background: none;
+  color: var(--ink);
+  font: 500 16px/1 var(--f-body);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.filter-pick option { background: var(--bg-raise); color: var(--ink); }
+.filter-pick svg { position: absolute; right: 18px; width: 18px; height: 18px; color: var(--accent); pointer-events: none; }
 .views { display: flex; gap: 2px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
 .views button { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); transition: background-color .3s, color .3s; }
 .views button:hover { color: var(--ink); }
@@ -1143,19 +1175,48 @@ html.is-live .holo { opacity: 1; transform: none; }
   .xp-side { position: relative; top: 0; }
 }
 
+/* Touch screens: the card in the middle of the screen gets the hover look (home.js). */
+@media (pointer: coarse) {
+  .filters button { padding-block: 15px; }
+  .views button { width: 42px; height: 42px; }
+  .contact-phone { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
+@media (hover: none) {
+  .project { --mx: 50%; --my: 0%; }
+  .project::before, .project::after { transition: opacity .6s var(--ease); }
+  .project.is-focus { box-shadow: 0 50px 90px -50px color-mix(in srgb, var(--accent) 55%, transparent); border-color: var(--line-2); }
+  .project.is-focus::before, .project.is-focus::after { opacity: 1; }
+  .project.is-focus .project-media img, .project.is-focus .project-media video { transform: translateY(var(--iy, 0%)) scale(1.2); }
+  .project.is-focus .project-media img[data-fit="contain"] { transform: translateY(var(--iy, 0%)) scale(1.06); }
+  .project.is-focus .project-more { color: var(--accent); }
+  .project.is-focus .project-more svg { transform: translateX(5px); }
+}
+
 @media (max-width: 760px) {
   .hero { height: auto; min-height: 100svh; }
-  .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 22px; padding: 14px 0 20px; }
-  .holo { order: -1; justify-self: center; margin: 0; height: auto; width: min(56vw, 240px); }
-  .hero-lines { max-width: none; }
-  .hero-index, .hero-cta { display: none !important; }
+  .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 26px; padding: 10px 0 22px; }
+  .holo { order: -1; justify-self: center; margin: 0; height: auto; width: min(54vw, 230px); }
+  .hero-lines { max-width: none; gap: 18px; }
+  .hero-tagline { font-size: clamp(1.4rem, 6.4vw, 1.9rem); }
   .hero-name { font-size: clamp(2.4rem, 13.4vw, 5rem); }
   .hero-top .hud:first-child { display: none; }
   .hero-top { justify-content: flex-end; }
-  .hero-coords { display: none; }
+  .hero-foot { display: none; }
+  .holo-head, .holo-meta .mono { font-size: 10.5px; }
+
+  /* A dropdown replaces the row of filters, next to the layout switch. */
+  .work-head { gap: 24px; }
+  .work-tools { flex-wrap: nowrap; width: 100%; }
+  .filters { display: none; }
+  .filter-pick { display: flex; }
+  .views { flex: none; }
+  .views button { width: 40px; height: 40px; }
 
   .work-grid { grid-template-columns: 1fr; }
-  .project-media { aspect-ratio: 4 / 3.6; }
+  .project-media { aspect-ratio: 4 / 3.4; }
+  .project-body { padding: 18px 20px 20px; }
+  .project-more { min-height: 32px; }
   [data-layout="index"] .project-body { grid-template-columns: 34px minmax(0, 1fr) 24px; grid-template-areas: "no title more" ". cat ."; gap: 6px 14px; }
   [data-layout="index"] .project-cat { justify-self: start; }
 
@@ -1165,11 +1226,92 @@ html.is-live .holo { opacity: 1; transform: none; }
 
   .stack-card { height: auto; min-height: 70vh; }
   .stack-inner { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-  .stack-visual { order: -1; height: min(340px, 86vw); border-left: 0; border-bottom: 1px solid var(--line); }
-  .viz { --w: min(92cqw, 104cqh); }
+  .stack-no { font-size: 12px; }
 
-  .globe { right: -45vw; top: 36%; width: 130vw; opacity: .7; }
-  .contact::before { background: linear-gradient(0deg, var(--bg) 25%, rgb(6 6 8 / .5) 70%, transparent); }
+  .stack-visual { order: -1; height: auto; aspect-ratio: 1 / .98; border-left: 0; border-bottom: 1px solid var(--line); }
+
+  .globe { right: -40vw; top: -4%; width: 125vw; translate: none; opacity: .65; }
+  .xp { padding: 80px 0 24px; }
+  .contact { min-height: auto; padding: 120px 0 48px; }
+  .contact::before { background: linear-gradient(0deg, var(--bg) 35%, rgb(6 6 8 / .45) 75%, transparent); }
+}
+
+/* Phones, upright or on their side: the pictures fill their panel and use a larger
+   type scale, with a floor on the smallest labels, so nothing in them drops below about 10px. */
+@media (max-width: 760px), (orientation: landscape) and (max-height: 500px) {
+  .viz { --w: calc(100cqw - 20px); aspect-ratio: auto; height: calc(100cqh - 20px); font-size: min(calc(var(--w) / 22), calc((100cqh - 20px) / 16)); gap: .9em; padding: 1.1em; }
+  .viz .mono { font-size: max(.7em, 10.5px); }
+  .chat-faces i { font-size: max(.62em, 10px); }
+  .chat-name small, .msg.me small { font-size: max(.6em, 10px); }
+  .msg > span { font-size: .84em; }
+  .plan-label { font-size: .8em; }
+  .plan-weeks span { font-size: max(.9em, 10px); }
+  .plan-now span { font-size: max(.52em, 10px) !important; }
+  .soc-app { font-size: .76em; }
+}
+
+/* Phones on their side: the screen is short, so each section is sized by its height. */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Hero: the pass card stands on the right at full height, the text and name on the left. */
+  .hero { --holo-w: calc((100svh - var(--nav-h) - 22px) * 5 / 7.1); height: auto; min-height: 100svh; padding-bottom: 14px; }
+  .hero-top, .hero-foot, .hero-index { display: none; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 8px 0 16px; }
+  .hero-lines, .hero-name { max-width: calc(100% - var(--holo-w) - 28px); }
+  .hero-lines { gap: 16px; }
+  .hero-tagline { font-size: clamp(1.15rem, 2.7vw, 1.6rem); }
+  .holo { position: absolute; top: calc(var(--nav-h) + 6px); right: var(--gutter); bottom: 14px; width: var(--holo-w); height: auto; max-height: none; margin: 0; }
+  /* The name is about 7 times as wide as its font size; it must stop short of the card. */
+  .hero-name { font-size: min(17svh, (100vw - 2 * var(--gutter) - var(--holo-w) - 28px) / 7); }
+  .holo-head, .holo-meta .mono { font-size: 10.5px; }
+  .filters button sup { font-size: 10px; }
+  .stack-no { font-size: 12px; }
+
+  .work { padding-block: 56px 64px; }
+  .work-head { margin-bottom: 24px; }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-media { aspect-ratio: 16 / 9; }
+
+  /* Formats: title and captions on the left, the object on the right. */
+  .formats-sticky { grid-template-columns: var(--gutter) minmax(0, 1fr) minmax(0, 1.35fr) var(--gutter); grid-template-rows: auto 1fr auto; column-gap: 20px; padding: calc(var(--nav-h) * .55) 0 16px; }
+  .formats-head, .formats-foot { grid-column: 2; width: auto; margin: 0; }
+  .formats-head { grid-row: 1; }
+  .formats-foot { grid-row: 3; }
+  .formats-stage { grid-column: 3; grid-row: 1 / -1; }
+  .formats-head .section-title { font-size: clamp(1.5rem, 3.6vw, 2.2rem); }
+  .formats-caps { grid-template-columns: 1fr; gap: 10px; }
+  .formats-caps li { display: grid; gap: 2px; }
+  .formats-caps strong { font-size: 1.05rem; }
+  .fmt-phone .phone { --pw: calc((100svh - 70px) / 2.17); }
+  .mbook { --pw: min(34svh, 22vw); }
+  .screen { --sw: min(52vw, (100svh - 120px) * 16 / 9); }
+
+  /* Strengths: each card fills the screen below the bar. */
+  .strengths { padding-block: 56px 48px; }
+  .section-head { margin-bottom: 28px; }
+  .stack-card { top: calc(var(--nav-h) * .5 + var(--i, 0) * 10px); height: calc(100svh - var(--nav-h) * .5 - 50px); margin-bottom: 10vh; }
+  .stack-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: none; }
+  .stack-visual { order: 0; height: auto; aspect-ratio: auto; border-left: 1px solid var(--line); border-bottom: 0; }
+  .stack-text { padding: 22px 24px; }
+  .stack-title { font-size: clamp(1.6rem, 3.6vw, 2.4rem); }
+  .stack-body { margin-top: 12px; font-size: 1.05rem; }
+
+  /* Experience and tools side by side again; tools as plain chips. */
+  .xp { padding-block: 56px 32px; }
+  .xp-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 36px; }
+  .xp-side { position: sticky; top: 24px; }
+  .has-orbit .orbit { display: none; }
+  .has-orbit .chips { position: static !important; width: auto; height: auto; overflow: visible; clip: auto; }
+
+  .contact { min-height: auto; padding: 72px 0 40px; }
+  .contact-title { font-size: min(14.5vw, 26svh); }
+  .contact-links { margin-top: 20px; }
+  .contact-meta { margin-top: 24px; }
+}
+
+/* Short phones: a smaller card and no figures, so the name still fits on the first screen. */
+@media (max-width: 760px) and (max-height: 740px) and (orientation: portrait) {
+  .holo { width: min(46vw, 196px); }
+  .hero-index { display: none; }
 }
 
 @media (max-width: 520px) {

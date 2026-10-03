@@ -24,7 +24,7 @@
         spin.className = 'ring-spin';
         spin.append(...items);
         el.append(spin);
-        el.insertAdjacentHTML('beforeend', '<div class="ring-floor"></div><div class="ring-hint mono" aria-hidden="true"><span>Drag to spin</span><span>·</span><span>Click to open</span></div>');
+        el.insertAdjacentHTML('beforeend', `<div class="ring-floor"></div><div class="ring-hint mono" aria-hidden="true"><span>${S.fine ? 'Drag' : 'Swipe'} to spin</span><span>·</span><span>${S.fine ? 'Click' : 'Tap'} to open</span></div>`);
 
         const step = 360 / n;
         const photos = items.map(it => it.querySelector('img'));

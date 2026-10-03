@@ -801,6 +801,8 @@ html.pt-in .curtain { animation: curtain-failsafe 0s linear 6s forwards; }
   font: 400 17px/1.2 var(--f-body);
 }
 .palette-search input::placeholder { color: var(--faint); }
+.palette-esc { flex: none; padding: 5px 8px; border: 1px solid var(--line-2); border-radius: 6px; color: var(--ink-2); transition: color .3s, border-color .3s; }
+.palette-esc:hover { color: var(--ink); border-color: var(--muted); }
 .palette-list { max-height: min(56vh, 440px); overflow: auto; padding: 8px; overscroll-behavior: contain; }
 .palette-group { padding: 12px 12px 6px; color: var(--faint); }
 .palette-item {
@@ -1024,6 +1026,38 @@ html.pt-in .curtain { animation: curtain-failsafe 0s linear 6s forwards; }
 .to-top { display: inline-flex; align-items: center; gap: 8px; }
 .to-top svg { width: 14px; height: 14px; transition: transform .5s var(--ease); }
 .to-top:hover svg { transform: translateY(-3px); }
+
+/* ---------- Touch screens and phones ----------
+   No keyboard hints where there is no keyboard, tap targets of at least 44px,
+   and labels a little larger than on desktop. */
+
+@media (hover: none) {
+  .footer-kbd { display: none; }
+}
+
+@media (pointer: coarse) {
+  .brand, .to-top { min-height: 44px; }
+  .palette-esc { padding: 10px 14px; text-transform: none; letter-spacing: 0; font: 500 14px/1 var(--f-body); }
+  .palette-item { padding-block: 12px; }
+  .menu-foot { align-items: center; }
+  .menu-foot button { min-height: 44px; padding: 0 18px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink-2); }
+}
+
+@media (max-width: 760px), (orientation: landscape) and (max-height: 500px) {
+  .mono { font-size: 12px; }
+  /* Long labels wrap instead of running out of the card. */
+  .btn { max-width: 100%; height: auto; min-height: var(--h); padding-block: 10px; white-space: normal; text-align: left; line-height: 1.25; }
+  .footer { padding: 18px 0 calc(22px + env(safe-area-inset-bottom)); }
+  /* The search box sits at the top, clear of the on-screen keyboard. */
+  .palette { padding-top: max(12px, env(safe-area-inset-top)); }
+}
+
+/* Phones on their side: the menu fits the short screen. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .menu { gap: 20px; padding-top: calc(var(--nav-h) + 4px); padding-bottom: 16px; }
+  .menu-links a { font-size: min(11vw, 9.5svh); }
+  .palette { padding-top: 12px; }
+}
 
 /* ---------- Reduced motion ---------- */
 

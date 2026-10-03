@@ -557,13 +557,15 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
   top: 20px;
   width: var(--pw);
   margin-left: calc(var(--pw) / -2);
-  transform-style: preserve-3d;
+  /* Flat, not preserve-3d: nested 3D layers made browsers miss clicks on the play button.
+     The slot's own perspective keeps depth in the pointer tilt. */
+  perspective: 1400px;
   transition: transform 1s var(--ease), opacity .8s var(--ease), filter .8s;
   cursor: pointer;
 }
 .phone-slot.is-active { cursor: default; }
-.phone-slot .phone { --pw: inherit; width: 100%; animation: phone-float 6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1.3s); }
-.phone-slot .phone-tilt { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .2s; }
+.phone-slot .phone { --pw: inherit; width: 100%; transform-style: flat; animation: phone-float 6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1.3s); }
+.phone-slot .phone-tilt { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .2s; }
 @keyframes phone-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
 .phone-slot:not(.is-active) { filter: brightness(.55) saturate(.8); }
 .phone-slot:not(.is-active):hover { filter: brightness(.8); }
@@ -616,7 +618,8 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
   color: #fff;
   transition: transform .5s var(--ease), background-color .3s, opacity .4s;
 }
-.phone-play svg { width: 40%; height: 40%; margin-left: 8%; }
+/* The triangle is already drawn off-centre in its icon box, so its visual centre sits in the middle. */
+.phone-play svg { width: 40%; height: 40%; }
 .phone-play:hover { transform: scale(1.08); background: var(--accent); color: var(--on-accent); border-color: transparent; }
 .phone-slot:not(.is-active) .phone-play { opacity: 0; pointer-events: none; }
 .phone.is-loaded .phone-play, .phone.is-loaded .tt, .phone.is-loaded .phone-cover { opacity: 0; pointer-events: none; }
@@ -645,7 +648,8 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
   color: var(--ink-2);
   transition: background-color .3s, color .3s, border-color .3s;
 }
-.phones-nav button:hover { background: var(--accent); border-color: transparent; color: var(--on-accent); }
+.phones-nav button:not(:disabled):hover { background: var(--accent); border-color: transparent; color: var(--on-accent); }
+.phones-nav button:disabled { opacity: .3; cursor: default; }
 .phones-nav svg { width: 18px; height: 18px; }
 .phones-dots { display: flex; align-items: center; gap: 8px; padding: 0 10px; }
 .phones-dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--line-2); transition: width .5s var(--ease), background-color .4s; }

@@ -761,6 +761,7 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
   .p-tab { justify-content: center; min-height: 46px; padding: 10px 8px; background: var(--surface); }
   .p-tab svg, .p-tab::before { display: none; }
   .p-steps .p-step span { display: none; }
+  .p-hero-hud { top: 14px; right: 14px; padding: 6px 10px; border-radius: 999px; background: rgb(6 6 8 / .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 }
 
 @media (pointer: coarse) {
@@ -777,7 +778,6 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
   /* A tall photo fills the cover instead of shrinking into a corner. */
   .p-hero.is-portrait .p-hero-img { object-fit: cover; object-position: 50% 22%; padding: 0; }
   .p-hero.is-portrait .p-hero-bg { display: none; }
-  .p-hero-hud { top: 14px; right: 14px; padding: 6px 10px; border-radius: 999px; background: rgb(6 6 8 / .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
   .tag { font-size: 12px; }
   .p-stats dd { font-size: 12px; }
   .next { align-items: flex-start; }
@@ -790,4 +790,18 @@ html.is-live .p-crumbs, html.is-live .p-aside, html.is-live .p-hero, html.is-liv
   .cinema-hud { inset: 12px 14px auto; }
   .corner { width: 14px; height: 14px; }
   .p-media { padding: 10px; }
+}
+
+/* Phones on their side: the cover, the phones and the film fit the screen height,
+   and the tab dock is smaller. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .p-hero { min-height: calc(100svh - 150px); }
+  .p-title { font-size: clamp(1.5rem, 3.4vw, 2.2rem); }
+  .tag, .p-stats dd { font-size: 12px; }
+  .phones { --pw: calc((100svh - 80px) / 2.17); }
+  .cinema { max-width: calc((100svh - 48px) * 16 / 9); }
+  .p-dock { bottom: max(8px, env(safe-area-inset-bottom)); padding: 4px; }
+  .p-dock button { min-height: 40px; padding: 8px 14px; font-size: 13px; }
+  /* The dock follows the top bar: out of the way while scrolling down, back on the way up. */
+  .nav.is-hidden ~ .p-dock { translate: -50% calc(100% + 40px); }
 }

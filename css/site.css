@@ -1043,13 +1043,20 @@ html.pt-in .curtain { animation: curtain-failsafe 0s linear 6s forwards; }
   .menu-foot button { min-height: 44px; padding: 0 18px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink-2); }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 760px), (orientation: landscape) and (max-height: 500px) {
   .mono { font-size: 12px; }
   /* Long labels wrap instead of running out of the card. */
   .btn { max-width: 100%; height: auto; min-height: var(--h); padding-block: 10px; white-space: normal; text-align: left; line-height: 1.25; }
   .footer { padding: 18px 0 calc(22px + env(safe-area-inset-bottom)); }
   /* The search box sits at the top, clear of the on-screen keyboard. */
   .palette { padding-top: max(12px, env(safe-area-inset-top)); }
+}
+
+/* Phones on their side: the menu fits the short screen. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .menu { gap: 20px; padding-top: calc(var(--nav-h) + 4px); padding-bottom: 16px; }
+  .menu-links a { font-size: min(11vw, 9.5svh); }
+  .palette { padding-top: 12px; }
 }
 
 /* ---------- Reduced motion ---------- */
